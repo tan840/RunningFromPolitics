@@ -6,8 +6,11 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float m_MoveSpeed;
-
+    bool canMove = false;
     Rigidbody m_RB;
+
+    public bool CanMove { get => canMove; set => canMove = value; }
+
     void Start()
     {
         m_RB = GetComponent<Rigidbody>();
@@ -15,6 +18,9 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        m_RB.AddForce(m_MoveSpeed * Time.fixedDeltaTime * transform.forward, ForceMode.VelocityChange);
+        if (canMove)
+        {
+            m_RB.AddForce(m_MoveSpeed * Time.fixedDeltaTime * transform.forward, ForceMode.VelocityChange);
+        }
     }
 }
