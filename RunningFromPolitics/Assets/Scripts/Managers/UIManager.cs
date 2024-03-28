@@ -45,6 +45,8 @@ public class UIManager : MonoBehaviour
     void SwitchCanvasTO(CanvasGroup _Canvas, float _Time = 1)
     {
         float val1 = m_CurrentCanvas.alpha;
+        m_CurrentCanvas.interactable = false;
+        m_CurrentCanvas.blocksRaycasts = false;
         DOTween.To(() => val1, x => val1 = x, 0f, _Time)
             .OnUpdate(() =>
             {
@@ -59,6 +61,11 @@ public class UIManager : MonoBehaviour
                 .OnUpdate(() =>
                 {
                     _Canvas.alpha = val2;
+                    
+                })
+                .OnComplete(() => {
+                    _Canvas.interactable = true;
+                    _Canvas.blocksRaycasts = true;
                 });
             });
     }
