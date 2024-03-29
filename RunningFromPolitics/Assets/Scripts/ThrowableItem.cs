@@ -6,8 +6,8 @@ public class ThrowableItem : MonoBehaviour, IGrabbable
 {
     //[SerializeField] float m_zDistance;
     [SerializeField] float m_MoveSpeed;
-    [SerializeField] Camera m_camera;
-    [SerializeField] Vector3 m_TouchPosition;
+    Camera m_camera;
+    Vector3 m_TouchPosition;
 
     Rigidbody m_RB;
     Vector3 m_WorldPosition, m_MovePosition;
