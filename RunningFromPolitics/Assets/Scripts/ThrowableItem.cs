@@ -31,7 +31,7 @@ public class ThrowableItem : MonoBehaviour, IGrabbable
     {
         if (collision.gameObject.layer == 7)
         {
-            print("Player");
+            //print("Player");
         }
     }
 }

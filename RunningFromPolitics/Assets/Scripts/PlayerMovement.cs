@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canMove)
         {
-            m_RB.AddForce(m_MoveSpeed * Time.fixedDeltaTime * transform.forward, ForceMode.VelocityChange);
+            m_RB.velocity = (m_MoveSpeed * Time.fixedDeltaTime * transform.forward);
         }
     }
 }
