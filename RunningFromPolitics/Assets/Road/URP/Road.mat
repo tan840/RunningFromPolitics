@@ -66,13 +66,13 @@ Material:
     - _Normal_Strength: 0.01
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _Road_Noise_Amount: 307.1
+    - _Road_Noise_Amount: 0
     - _Road_Normal_Height: 0
-    - _Road_Roughness: 0.424
+    - _Road_Roughness: 0
     m_Colors:
     - _Centre_Color: {r: 1, g: 1, b: 1, a: 0}
     - _Edge_Color: {r: 1, g: 0.6744842, b: 0, a: 0}
-    - _Road_Color: {r: 0.0471698, g: 0.0471698, b: 0.0471698, a: 0}
+    - _Road_Color: {r: 0.08681371, g: 0.08486288, b: 0.10943389, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5351176024853079146
 MonoBehaviour:
