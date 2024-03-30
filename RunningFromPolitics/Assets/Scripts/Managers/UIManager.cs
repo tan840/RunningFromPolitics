@@ -37,10 +37,14 @@ public class UIManager : MonoBehaviour
         m_GameManager = GameManager.Instance;
         m_StartButton.onClick.AddListener(() => { StartGame(); });
     }
-    public void StartGame()
+    void StartGame()
     {
         SwitchCanvasTO(m_GamePannel);
         m_GameManager.GameStarted();
+    }
+    public void ShowStartPannel()
+    {
+        SwitchCanvasTO(m_StartPannel);
     }
     void SwitchCanvasTO(CanvasGroup _Canvas, float _Time = 1)
     {
@@ -54,18 +58,20 @@ public class UIManager : MonoBehaviour
             })
             .OnComplete(() =>
             {
-                m_CurrentCanvas.gameObject.SetActive(true);
+                m_CurrentCanvas.gameObject.SetActive(false);
                 _Canvas.gameObject.SetActive(true);
                 float val2 = _Canvas.alpha;
                 DOTween.To(() => val2, x => val2 = x, 1f, _Time)
                 .OnUpdate(() =>
                 {
                     _Canvas.alpha = val2;
-                    
+
                 })
-                .OnComplete(() => {
+                .OnComplete(() =>
+                {
                     _Canvas.interactable = true;
                     _Canvas.blocksRaycasts = true;
+                    m_CurrentCanvas = _Canvas;
                 });
             });
     }

@@ -17,6 +17,7 @@ public class TrashButton : MonoBehaviour
             m_CurrentEvent = m_Events[0];
             m_CurrentEvent.OnCollect.AddListener(CollectedItem);
             m_CurrentEvent.OnQuestComplete.AddListener(QuestComplted);
+            m_HeaderText.text = m_CurrentEvent.HeaderText;
         }
     }
     void CollectedItem()
@@ -40,6 +41,7 @@ public class TrashButton : MonoBehaviour
             m_CurrentEvent = m_Events[m_CurrentEventIndex];
             m_CurrentEvent.OnCollect.AddListener(CollectedItem);
             m_CurrentEvent.OnQuestComplete.AddListener(QuestComplted);
+            m_HeaderText.text = m_CurrentEvent.HeaderText;
         }
     }
     public void Collect(IGrabbable _Item)

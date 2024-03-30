@@ -32,9 +32,9 @@ public abstract class ThrowableItem : MonoBehaviour, IGrabbable
     }
     public virtual void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == 7)
+        if (collision.gameObject.layer == 7 && collision.collider.TryGetComponent(out PlayerHealth health))
         {
-            //print("Player");
+            health.TakeHit();
         }
     }
 }
