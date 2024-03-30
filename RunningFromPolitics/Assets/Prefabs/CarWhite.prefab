@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7504107862326162338}
   - component: {fileID: 7790759744670597077}
   - component: {fileID: 1208680182677114401}
-  - component: {fileID: 8733402829582856510}
   - component: {fileID: 4146317635781024765}
   - component: {fileID: 992725022664583714}
+  - component: {fileID: 7406200145881806441}
   m_Layer: 6
   m_Name: CarWhite
   m_TagString: Untagged
@@ -86,21 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8733402829582856510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7810442256579244482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 582a51082469cd84caa878333ed9e0ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MoveSpeed: 500
-  m_camera: {fileID: 0}
-  m_TouchPosition: {x: 0, y: 0, z: 0}
 --- !u!54 &4146317635781024765
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -149,3 +134,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.8992116, y: 1.11921, z: 5.110327}
   m_Center: {x: 0.015394211, y: 0.8488506, z: 0.005942582}
+--- !u!114 &7406200145881806441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7810442256579244482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e86021072a0e64c4da673a7cabf8545a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MoveSpeed: 100
+  m_NameTag: CarWhite

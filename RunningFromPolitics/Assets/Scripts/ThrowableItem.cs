@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ThrowableItem : MonoBehaviour, IGrabbable
+public abstract class ThrowableItem : MonoBehaviour, IGrabbable
 {
     //[SerializeField] float m_zDistance;
     [SerializeField] float m_MoveSpeed;
+    [SerializeField] string m_NameTag;
     Camera m_camera;
     Vector3 m_TouchPosition;
 
@@ -14,12 +15,14 @@ public class ThrowableItem : MonoBehaviour, IGrabbable
 
     public Rigidbody RB { get => m_RB; set => m_RB = value; }
 
-    void Awake()
+    public string ItemTag => m_NameTag;
+
+    public virtual void Awake()
     {
         m_camera = Camera.main;      
         m_RB = GetComponent<Rigidbody>();
     }
-    public void OnGrab(float _zDistance)
+    public virtual void OnGrab(float _zDistance)
     {
         m_TouchPosition = Input.mousePosition;
         m_TouchPosition.z = _zDistance;
@@ -27,7 +30,7 @@ public class ThrowableItem : MonoBehaviour, IGrabbable
         m_MovePosition = Vector3.Lerp(m_RB.position, m_WorldPosition, m_MoveSpeed);
         m_RB.MovePosition(m_MovePosition);
     }
-    private void OnCollisionEnter(Collision collision)
+    public virtual void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.layer == 7)
         {

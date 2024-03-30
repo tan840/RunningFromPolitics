@@ -14,11 +14,11 @@ public class EnemyBehaviour : MonoBehaviour
     void Start()
     {
         m_Item = m_ItemTothow.GetComponent<ThrowableItem>();
-        Invoke(nameof(Throw), 2);
+        //Invoke(nameof(Throw), 2);
     }
     void Throw()
     {
-        //m_ItemTothow.transform.DOJump(m_Destinatiion.transform.position, 10, 1, m_Duration);
+        m_ItemTothow.transform.DOJump(m_Destinatiion.transform.position, 10, 1, m_Duration);
     }
 
 }

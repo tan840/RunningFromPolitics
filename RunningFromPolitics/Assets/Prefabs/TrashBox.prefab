@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2800885242399796602}
   - component: {fileID: 8937525055902613499}
   - component: {fileID: 2541625869370484268}
-  - component: {fileID: 2940813671689464113}
   - component: {fileID: 412084538008729129}
+  - component: {fileID: 1691485368203645286}
   m_Layer: 6
   m_Name: TrashBox
   m_TagString: Untagged
@@ -107,21 +107,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.4319754
   m_Center: {x: 0, y: 1.34, z: 0}
---- !u!114 &2940813671689464113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8551984619541651841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 582a51082469cd84caa878333ed9e0ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MoveSpeed: 500
-  m_camera: {fileID: 0}
-  m_TouchPosition: {x: 0, y: 0, z: 0}
 --- !u!54 &412084538008729129
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -149,3 +134,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1691485368203645286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8551984619541651841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df1b6693a9a4fe4cb60eda3d0495e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_MoveSpeed: 100
+  m_NameTag: TrashBox

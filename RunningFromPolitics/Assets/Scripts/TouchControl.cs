@@ -30,13 +30,13 @@ public class TouchControl : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            CheckMouseOverButton();
+            CheckMouseOverButton(m_Grabbable);
             m_Grabbable = null;
             m_ZDistance = 0;
         }
         m_Grabbable?.OnGrab(m_ZDistance);       
     }
-    void CheckMouseOverButton()
+    void CheckMouseOverButton(IGrabbable _Item)
     {
         if (m_EventSystem.IsPointerOverGameObject())
         {
@@ -47,10 +47,9 @@ public class TouchControl : MonoBehaviour
             
             for (int i = 0; i < Rayresults.Count; i++)
             {
-                print("Loop");
                 if (Rayresults[i].gameObject.TryGetComponent(out TrashButton trashButton))
                 {
-                    trashButton.PrintData();
+                    trashButton.Collect(_Item);
                 }
             }
         }
