@@ -29,6 +29,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] CanvasGroup m_StartPannel;
     [SerializeField] CanvasGroup m_GamePannel;
     [SerializeField] Button m_StartButton;
+    [SerializeField] Image[] m_HealthSprites;
     CanvasGroup m_CurrentCanvas;
     GameManager m_GameManager;
     private void Start()
@@ -45,6 +46,15 @@ public class UIManager : MonoBehaviour
     public void ShowStartPannel()
     {
         SwitchCanvasTO(m_StartPannel);
+    }
+    public void OnDamageTaken(int _currentHealth)
+    {
+        if (_currentHealth < 0) return;
+  
+        for (int i = _currentHealth; i < m_HealthSprites.Length; i++)
+        {
+            m_HealthSprites[i].DOFade(0,0.5f);
+        }
     }
     void SwitchCanvasTO(CanvasGroup _Canvas, float _Time = 1)
     {

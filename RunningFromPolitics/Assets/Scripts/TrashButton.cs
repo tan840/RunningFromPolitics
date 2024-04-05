@@ -29,6 +29,10 @@ public class TrashButton : MonoBehaviour
             m_CurrentEvent.OnQuestComplete?.Invoke();
         }
     }
+    void OnDamageTaken()
+    {
+
+    }
     void QuestComplted()
     {
         print("QuestComplted");

@@ -3201,6 +3201,10 @@ MonoBehaviour:
   m_StartPannel: {fileID: 1752890749}
   m_GamePannel: {fileID: 1971595910}
   m_StartButton: {fileID: 1095556463}
+  m_HealthSprites:
+  - {fileID: 1269864815}
+  - {fileID: 1959900067}
+  - {fileID: 1063279937}
 --- !u!1 &304059575
 GameObject:
   m_ObjectHideFlags: 0
@@ -10770,7 +10774,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1971595905}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 0.55
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0

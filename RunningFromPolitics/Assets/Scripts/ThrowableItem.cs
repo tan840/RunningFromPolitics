@@ -7,6 +7,7 @@ public abstract class ThrowableItem : MonoBehaviour, IGrabbable
     //[SerializeField] float m_zDistance;
     [SerializeField] float m_MoveSpeed;
     [SerializeField] string m_NameTag;
+    bool hasCollided = false;
     Camera m_camera;
     Vector3 m_TouchPosition;
 
@@ -34,8 +35,9 @@ public abstract class ThrowableItem : MonoBehaviour, IGrabbable
     }
     public virtual void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.layer == 7 && collision.collider.TryGetComponent(out PlayerHealth health))
+        if (!hasCollided && collision.gameObject.layer == 7 && collision.collider.TryGetComponent(out PlayerHealth health))
         {
+            hasCollided = true;
             health.TakeHit();
         }
     }
