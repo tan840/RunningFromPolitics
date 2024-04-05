@@ -22,6 +22,8 @@ public abstract class ThrowableItem : MonoBehaviour, IGrabbable
         m_camera = Camera.main;      
         m_RB = GetComponent<Rigidbody>();
     }
+
+
     public virtual void OnGrab(float _zDistance)
     {
         m_TouchPosition = Input.mousePosition;

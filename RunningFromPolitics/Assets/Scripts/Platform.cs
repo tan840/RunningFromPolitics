@@ -46,7 +46,7 @@ public class Platform : MonoBehaviour
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {
-        if (m_Spawnpoints.Length > 0)
+        if (m_Spawnpoints.Length >= 0)
         {
             Gizmos.color = Color.blue;
             foreach (Transform point in m_Spawnpoints)

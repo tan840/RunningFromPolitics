@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afdee78f97db9064ba4f7c55794bdd20, type: 3}
+  m_Name: Cycle
+  m_EditorClassIdentifier: 
+  NameTag: Cycle
+  HeaderText: Collect 6 Bicycle
+  NumberOfItemsToCollect: 6
+  OnCollect:
+    m_PersistentCalls:
+      m_Calls: []
+  OnQuestComplete:
+    m_PersistentCalls:
+      m_Calls: []
