@@ -86,6 +86,7 @@ public class GameManager : MonoBehaviour
         m_PlayerMovement.CanMove = true;
         m_StartSceneBackground.SetActive(false);
         m_Anim.ResetTrigger("Start");
+        m_UIManager.ResetHealthIcon();
     }
 
     public void GameOver()

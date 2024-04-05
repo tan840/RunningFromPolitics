@@ -47,6 +47,13 @@ public class UIManager : MonoBehaviour
     {
         SwitchCanvasTO(m_StartPannel);
     }
+    public void ResetHealthIcon()
+    {
+        foreach (var item in m_HealthSprites)
+        {
+            item.DOFade(1,0.5f);
+        }
+    }
     public void OnDamageTaken(int _currentHealth)
     {
         if (_currentHealth < 0) return;
