@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     private static UIManager instance;
+    ScoreManager m_ScoreManager;
     public static UIManager Instance
     {
         get
@@ -34,6 +35,7 @@ public class UIManager : MonoBehaviour
     GameManager m_GameManager;
     private void Start()
     {
+        m_ScoreManager = ScoreManager.Instance;
         m_CurrentCanvas = m_StartPannel;
         m_GameManager = GameManager.Instance;
         m_StartButton.onClick.AddListener(() => { StartGame(); });

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using static UnityEditor.Progress;
 
 public class TouchControl : MonoBehaviour
 {
@@ -27,6 +28,7 @@ public class TouchControl : MonoBehaviour
                 m_ZDistance = (m_Hit.transform.position - m_Camera.transform.position).z;
 
             }
+            
         }
         else if (Input.GetMouseButtonUp(0))
         {
@@ -34,7 +36,35 @@ public class TouchControl : MonoBehaviour
             m_Grabbable = null;
             m_ZDistance = 0;
         }
-        m_Grabbable?.OnGrab(m_ZDistance);       
+        m_Grabbable?.OnGrab(m_ZDistance);
+
+
+    }
+    void CheckMouseOverTrash()
+    {
+
+        TrashButton m_TrashBtn = null;
+        if (m_EventSystem.IsPointerOverGameObject())
+        {
+            PointerEventData pointerdata = new PointerEventData(m_EventSystem);
+            pointerdata.position = Input.mousePosition;
+            List<RaycastResult> Rayresults = new List<RaycastResult>();
+            m_EventSystem.RaycastAll(pointerdata, Rayresults);
+
+            for (int i = 0; i < Rayresults.Count; i++)
+            {
+                if (Rayresults[i].gameObject.TryGetComponent(out TrashButton trashButton))
+                {
+                    m_TrashBtn = trashButton;
+                    m_TrashBtn.ScaleIcon();
+                }
+            }
+        }
+        else
+        {
+            m_TrashBtn?.ScaleIconReset();
+            print(m_TrashBtn);
+        }
     }
     void CheckMouseOverButton(IGrabbable _Item)
     {
@@ -44,7 +74,7 @@ public class TouchControl : MonoBehaviour
             pointerdata.position = Input.mousePosition;
             List<RaycastResult> Rayresults = new List<RaycastResult>();
             m_EventSystem.RaycastAll(pointerdata, Rayresults);
-            
+
             for (int i = 0; i < Rayresults.Count; i++)
             {
                 if (Rayresults[i].gameObject.TryGetComponent(out TrashButton trashButton))

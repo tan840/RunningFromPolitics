@@ -1,15 +1,20 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TrashButton : MonoBehaviour
 {
     [SerializeField] EventData[] m_Events;
-    [SerializeField] TMP_Text m_HeaderText;
+    [SerializeField] Text m_HeaderText;
     [SerializeField] int m_CurrentEventIndex = 0;
+    [SerializeField] RectTransform m_RectTransform;
     int CollectedItemCount = 0;
     EventData m_CurrentEvent;
+    ScoreManager m_ScoreManager;
+    bool isScaled = false;
     private void Start()
     {
         if (m_Events != null)
@@ -19,19 +24,32 @@ public class TrashButton : MonoBehaviour
             m_CurrentEvent.OnQuestComplete.AddListener(QuestComplted);
             m_HeaderText.text = m_CurrentEvent.HeaderText;
         }
+        m_ScoreManager = ScoreManager.Instance;
+        m_RectTransform = GetComponent<RectTransform>();
     }
     void CollectedItem()
     {
-        
+
         CollectedItemCount++;
         if (m_CurrentEvent.NumberOfItemsToCollect <= CollectedItemCount)
         {
             m_CurrentEvent.OnQuestComplete?.Invoke();
         }
-    }
-    void OnDamageTaken()
-    {
+        ScaleIconReset();
 
+    }
+    public void ScaleIcon()
+    {
+        if (isScaled == false)
+        {
+            isScaled = true;
+            m_RectTransform.DOScale(1.5f, 0.25f);
+        }
+    }
+    public void ScaleIconReset()
+    {
+        m_RectTransform.DOScale(1f, 0.25f);
+        isScaled = false;
     }
     void QuestComplted()
     {
@@ -50,15 +68,18 @@ public class TrashButton : MonoBehaviour
     }
     public void Collect(IGrabbable _Item)
     {
+        if (_Item == null) return;
+
         if (_Item.ItemTag == m_CurrentEvent.NameTag)
         {
             m_CurrentEvent.OnCollect?.Invoke();
-            print("ItemCollected " + _Item.ItemTag);
+            //print("ItemCollected " + _Item.ItemTag);
+            m_ScoreManager.IncrimentScore(10);
         }
 #if UNITY_EDITOR
         else
         {
-            Debug.Log("Item Does Not Match");
+            //Debug.Log("Item Does Not Match");
         }
 #endif
     }

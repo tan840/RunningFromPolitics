@@ -32,6 +32,7 @@ public abstract class ThrowableItem : MonoBehaviour, IGrabbable
         m_WorldPosition = m_camera.ScreenToWorldPoint(m_TouchPosition);
         m_MovePosition = Vector3.Lerp(m_RB.position, m_WorldPosition, m_MoveSpeed);
         m_RB.MovePosition(m_MovePosition);
+        //soundmanager has grab shound played
     }
     public virtual void OnCollisionEnter(Collision collision)
     {
