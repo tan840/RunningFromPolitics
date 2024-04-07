@@ -29,12 +29,14 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] int m_CurrentScore;
     [SerializeField] int m_MaxScore;
     [SerializeField] TMP_Text m_ScoreText;
+    [SerializeField] TMP_Text m_HighScoreText;
     string HIGH_SCORE;
 
     //ToDo= Reset Score On death  
     private void Start()
     {
         m_MaxScore = PlayerPrefs.GetInt(HIGH_SCORE, 0);
+        m_HighScoreText.text = m_MaxScore.ToString();
         ScoreTextUpdate(m_CurrentScore);
     }
 
@@ -58,7 +60,10 @@ public class ScoreManager : MonoBehaviour
     {
         if (m_CurrentScore > MaxScore)
         {
-            PlayerPrefs.SetString(HIGH_SCORE, m_CurrentScore.ToString());
+            PlayerPrefs.SetInt(HIGH_SCORE, m_CurrentScore);
+            m_MaxScore = m_CurrentScore;
+            m_HighScoreText.text = m_MaxScore.ToString();
+            m_CurrentScore = 0;
         }
     }
 }

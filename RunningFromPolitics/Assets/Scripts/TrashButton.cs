@@ -60,7 +60,6 @@ public class TrashButton : MonoBehaviour
     void QuestComplted()
     {
         m_GameManager.PLayConfetti();
-        print("QuestComplted");
         m_CurrentEvent.OnCollect.RemoveListener(CollectedItem);
         m_CurrentEvent.OnQuestComplete.RemoveListener(QuestComplted);
         CollectedItemCount = 0;
@@ -80,20 +79,15 @@ public class TrashButton : MonoBehaviour
         if (_Item.ItemTag == m_CurrentEvent.NameTag)
         {
             m_CurrentEvent.OnCollect?.Invoke();
-            //print("ItemCollected " + _Item.ItemTag);
             m_ScoreManager.IncrimentScore(10);
             m_SoundManager.PlayOnce("CoinPickup");
-           
-
-
+            m_GameManager.IncreasePlayerSpeed();
         }
-#if UNITY_EDITOR
         else
         {
             m_ScoreManager.Penalty(10);
             m_SoundManager.PlayOnce("Explosion");
-            //Debug.Log("Item Does Not Match");
+
         }
-#endif
     }
 }

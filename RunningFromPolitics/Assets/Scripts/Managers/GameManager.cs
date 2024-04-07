@@ -31,9 +31,12 @@ public class GameManager : MonoBehaviour
 
     //Player Reference
     [SerializeField] GameObject m_Player;
+    [SerializeField] float m_SpeedIncriment = 5;
     Animator m_Anim;
     private PlayerMovement m_PlayerMovement;
     private PlayerHealth m_PlayerHealth;
+    private ScoreManager m_ScoreManager;
+    private LevelPoolManager m_LevelManager;
     [SerializeField] CinemachineVirtualCamera m_LookAtCam;
     [SerializeField] GameObject m_StartSceneBackground;
     [SerializeField] ParticleSystem[] m_Conffetti;
@@ -63,11 +66,17 @@ public class GameManager : MonoBehaviour
         m_PlayerHealth.OnDeath.AddListener(OnDeath);
         m_PlayerStartPosition = m_Player.transform.position;
         m_UIManager = UIManager.Instance;
-
-
-
+        m_ScoreManager = ScoreManager.Instance;
+        m_LevelManager = LevelPoolManager.Instance;
     }
-
+    public void IncreasePlayerSpeed()
+    {
+        m_PlayerMovement.MoveSpeed += m_SpeedIncriment;
+        if (m_PlayerMovement.MoveSpeed > 1000)
+        {
+            m_PlayerMovement.MoveSpeed = 1000;
+        }
+    }
     public void PLayConfetti()
     {
         foreach (ParticleSystem m in m_Conffetti)
@@ -88,6 +97,8 @@ public class GameManager : MonoBehaviour
             m_UIManager.ShowStartPannel();
             m_LookAtCam.Priority = 11;
             m_PlayerHealth.ResetHealth();
+            m_ScoreManager.SetMaxScore();
+            m_LevelManager.ResetPlatform();
         }
     }
     public void GameStarted()

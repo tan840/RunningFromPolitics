@@ -31,7 +31,12 @@ public class LevelPoolManager : MonoBehaviour
     [SerializeField] float m_PlatformLength = 100;
     int m_CurrentPlatformIndex = -1;
     Vector3 m_SpawnPosition = Vector3.zero;
-
+    public void ResetPlatform()
+    {
+        m_CurrentPlatformIndex = -1;
+        m_SpawnPosition = Vector3.zero;
+        m_PlatformLength = 100;
+    }
     public void LoadNextPlatform()
     {
         int index = GetNextPlatformIndex();
