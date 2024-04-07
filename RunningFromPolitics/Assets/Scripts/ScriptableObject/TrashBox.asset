@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: TrashBox
   m_EditorClassIdentifier: 
   NameTag: TrashBox
-  HeaderText: Collect 6 Trash Box
-  NumberOfItemsToCollect: 6
+  HeaderText: Collect 3 Trash Box
+  NumberOfItemsToCollect: 3
   OnCollect:
     m_PersistentCalls:
       m_Calls: []

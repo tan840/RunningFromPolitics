@@ -12,22 +12,18 @@ public class PlayerMovement : MonoBehaviour
 
     SoundManager m_SoundManager;
     public bool CanMove { get => canMove; set => canMove = value; }
+    public float MoveSpeed { get => m_MoveSpeed; set => m_MoveSpeed = value; }
 
     void Start()
     {
         m_RB = GetComponent<Rigidbody>();
-        m_SoundManager = SoundManager.Instance;
     }
+
 
     void FixedUpdate()
     {
         if (canMove)
-        {
-            /*  m_SoundManager.PlayAudio(0);
-              Invoke(ToString(m_SoundManager.PlayAudio(0),1f);*/
-            //  SoundManager.PlaySound(SoundManager.Sound.PlayerMove);
-           //m_SoundManager.PlayAudio(0,5 );
-            
+        {   
             m_RB.velocity = (m_MoveSpeed * Time.fixedDeltaTime * transform.forward);
         }
     }

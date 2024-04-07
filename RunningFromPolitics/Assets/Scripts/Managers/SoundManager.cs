@@ -1,15 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Audio;
 using UnityEngine;
-
+using System;
+[System.Serializable]
 public class SoundManager : MonoBehaviour
 {
-    public enum Sound
-    {
-        PlayerMove,
-        PlayerDeath,
-        ObjectGrab,
-    }
+    public Sound[] sounds;
+
+
     private static SoundManager instance;
 
     public static SoundManager Instance
@@ -30,63 +29,48 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    //[SerializeField] public SoundAudioClip[] SoundAudioClipArray;
-
-    /*[System.Serializable]
-    public class SoundAudioClip
+    private void Awake()
     {
-        public SoundManager.Sound sound;
-        public AudioClip audioClip;
-    }*/
-
-
-   /* public static void PlaySound(Sound sound)
-    {
-        GameObject SoundGameObject = new GameObject("Sound");
-        AudioSource AudioSource = SoundGameObject.AddComponent<AudioSource>();
-        AudioSource.PlayOneShot(GetAudioClip(sound));
-    }*/
-
-    /*private static AudioClip GetAudioClip(Sound sound)
-    {
-        foreach (SoundAudioClip soundAudioClip in SoundAudioClipArray)
+        foreach (Sound s in sounds)
         {
-            if (soundAudioClip.sound == sound)
-            {
-                return soundAudioClip.audioClip;
-            }
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
 
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
+            s.source.loop = s.Loop;
         }
-        Debug.LogError("Sound " + sound + " not found");
-        return null;
-    }*/
-    
-    [SerializeField] GameObject[] SFX;
-   public void PlayAudio(int Index,float time)
-    {
-        if (SFX[Index] != null)
-        {
-            //WaitAndPrint(Index,time);
-            print("e");
-            StartCoroutine(WaitAndPrint(Index,time));
-           // SFX[Index].GetComponent<AudioSource>().Play();
-        }else
-        {
-            Debug.LogError("could not find " + SFX[Index] + " in list");
-        }
+        //sounds = GetComponent<Sound>();
     }
 
-
-    IEnumerator WaitAndPrint(int index,float time)
+    public void Play(string name)
     {
-        // suspend execution for 5 seconds
-        print("e");
-        yield return new WaitForSeconds(time);
-        SFX[index].GetComponent<AudioSource>().Play();
-        print("e");
-        yield return new WaitForSeconds(time);
-        //print("WaitAndPrint " + Time.time);
-
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null) { print("failed"); return; }
+        s.source.Play();
+        //s.source.PlayOneShot(s.clip);
+      //  print(name + " played");
     }
 
+    private void Start()
+    {
+        Play("Theme");
+    }
+    public void Stop(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null) { print("failed"); return; }
+        //s.source.Play();
+        s.source.Stop();
+       // print(name + " played");
+    }
+
+    public void PlayOnce(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null) { print("failed"); return; }
+        //s.source.Play();
+        s.source.PlayOneShot(s.clip);
+        //print(name + " played");
+    }
 }

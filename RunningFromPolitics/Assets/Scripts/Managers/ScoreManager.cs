@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -27,23 +28,31 @@ public class ScoreManager : MonoBehaviour
 
     [SerializeField] int m_CurrentScore;
     [SerializeField] int m_MaxScore;
+    [SerializeField] TMP_Text m_ScoreText;
     string HIGH_SCORE;
 
     //ToDo= Reset Score On death  
     private void Start()
     {
-        MaxScore = PlayerPrefs.GetInt(HIGH_SCORE, 0);
+        m_MaxScore = PlayerPrefs.GetInt(HIGH_SCORE, 0);
+        ScoreTextUpdate(m_CurrentScore);
     }
 
     public void IncrimentScore(int _score)
     {
         m_CurrentScore += _score;
+        ScoreTextUpdate(m_CurrentScore);
+    }
+    void ScoreTextUpdate(int _Score)
+    {
+        m_ScoreText.text = "Score: " + _Score.ToString();
     }
     public void Penalty(int _Penalty)
     {
         if (m_CurrentScore <= 0) return;
         m_CurrentScore -= _Penalty;
         if (m_CurrentScore <= 0) m_CurrentScore = 0;
+        ScoreTextUpdate(m_CurrentScore);
     }
     public void SetMaxScore()
     {

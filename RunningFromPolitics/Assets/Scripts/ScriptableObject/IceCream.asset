@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NameTag: IceCream
   HeaderText: Collect 6 Ice cream Stand
-  NumberOfItemsToCollect: 0
+  NumberOfItemsToCollect: 6
   OnCollect:
     m_PersistentCalls:
       m_Calls: []

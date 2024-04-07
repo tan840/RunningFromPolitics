@@ -12,10 +12,14 @@ public class TouchControl : MonoBehaviour
     IGrabbable m_Grabbable;
     float m_ZDistance;
     EventSystem m_EventSystem;
+
+
+    SoundManager m_soundManager;
     private void Start()
     {
         m_Camera = Camera.main;
         m_EventSystem = EventSystem.current;
+        m_soundManager = SoundManager.Instance;
     }
     private void Update()
     {
@@ -26,7 +30,7 @@ public class TouchControl : MonoBehaviour
             {
                 m_Grabbable = m_Hit.collider.gameObject.GetComponent<IGrabbable>();
                 m_ZDistance = (m_Hit.transform.position - m_Camera.transform.position).z;
-
+                m_soundManager.Play("MindControl");
             }
             
         }
@@ -35,6 +39,7 @@ public class TouchControl : MonoBehaviour
             CheckMouseOverButton(m_Grabbable);
             m_Grabbable = null;
             m_ZDistance = 0;
+            m_soundManager.Stop("MindControl");
         }
         m_Grabbable?.OnGrab(m_ZDistance);
 

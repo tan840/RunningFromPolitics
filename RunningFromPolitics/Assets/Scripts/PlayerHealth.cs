@@ -10,8 +10,11 @@ public class PlayerHealth : MonoBehaviour
     GameManager m_GameManager;
     UIManager m_UIManager;
 
+    SoundManager m_SoundManager;
+
     private void Start()
     {
+        m_SoundManager = SoundManager.Instance;
         m_GameManager = GameManager.Instance;
         m_UIManager = UIManager.Instance;
     }
@@ -24,6 +27,7 @@ public class PlayerHealth : MonoBehaviour
         {
             m_GameManager.GameOver();
             OnDeath?.Invoke();
+            m_SoundManager.PlayOnce("Deadsfx");
         }
     }
     public void ResetHealth()

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: CarWhite
   m_EditorClassIdentifier: 
   NameTag: CarWhite
-  HeaderText: Collect 5 White Car
-  NumberOfItemsToCollect: 5
+  HeaderText: 'Collect 1 White Car (Hint: Drag items to the Recycle Icon)'
+  NumberOfItemsToCollect: 1
   OnCollect:
     m_PersistentCalls:
       m_Calls: []

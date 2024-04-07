@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     private PlayerHealth m_PlayerHealth;
     [SerializeField] CinemachineVirtualCamera m_LookAtCam;
     [SerializeField] GameObject m_StartSceneBackground;
+    [SerializeField] ParticleSystem[] m_Conffetti;
     Vector3 m_PlayerStartPosition;
     WaitForSeconds m_WaitForSeconds = new WaitForSeconds(4);
 
@@ -62,6 +63,17 @@ public class GameManager : MonoBehaviour
         m_PlayerHealth.OnDeath.AddListener(OnDeath);
         m_PlayerStartPosition = m_Player.transform.position;
         m_UIManager = UIManager.Instance;
+
+
+
+    }
+
+    public void PLayConfetti()
+    {
+        foreach (ParticleSystem m in m_Conffetti)
+        {
+            m.Play();
+        }
     }
     void OnDeath()
     {

@@ -15,10 +15,14 @@ public class TrashButton : MonoBehaviour
     EventData m_CurrentEvent;
     ScoreManager m_ScoreManager;
     bool isScaled = false;
+
+    SoundManager m_SoundManager;
+    GameManager m_GameManager;
     private void Start()
     {
         if (m_Events != null)
         {
+
             m_CurrentEvent = m_Events[0];
             m_CurrentEvent.OnCollect.AddListener(CollectedItem);
             m_CurrentEvent.OnQuestComplete.AddListener(QuestComplted);
@@ -26,6 +30,8 @@ public class TrashButton : MonoBehaviour
         }
         m_ScoreManager = ScoreManager.Instance;
         m_RectTransform = GetComponent<RectTransform>();
+        m_SoundManager = SoundManager.Instance;
+        m_GameManager = GameManager.Instance;
     }
     void CollectedItem()
     {
@@ -53,6 +59,7 @@ public class TrashButton : MonoBehaviour
     }
     void QuestComplted()
     {
+        m_GameManager.PLayConfetti();
         print("QuestComplted");
         m_CurrentEvent.OnCollect.RemoveListener(CollectedItem);
         m_CurrentEvent.OnQuestComplete.RemoveListener(QuestComplted);
@@ -75,10 +82,16 @@ public class TrashButton : MonoBehaviour
             m_CurrentEvent.OnCollect?.Invoke();
             //print("ItemCollected " + _Item.ItemTag);
             m_ScoreManager.IncrimentScore(10);
+            m_SoundManager.PlayOnce("CoinPickup");
+           
+
+
         }
 #if UNITY_EDITOR
         else
         {
+            m_ScoreManager.Penalty(10);
+            m_SoundManager.PlayOnce("Explosion");
             //Debug.Log("Item Does Not Match");
         }
 #endif

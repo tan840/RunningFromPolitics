@@ -29,10 +29,13 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] CanvasGroup m_StartPannel;
     [SerializeField] CanvasGroup m_GamePannel;
+    [SerializeField] CanvasGroup m_TutorialPannel;
     [SerializeField] Button m_StartButton;
     [SerializeField] Image[] m_HealthSprites;
     CanvasGroup m_CurrentCanvas;
     GameManager m_GameManager;
+    WaitForSeconds m_ShowPannelDelay = new WaitForSeconds(2);
+    WaitForSeconds m_WaitForSeconds = new WaitForSeconds(4);
     private void Start()
     {
         m_ScoreManager = ScoreManager.Instance;
@@ -44,6 +47,26 @@ public class UIManager : MonoBehaviour
     {
         SwitchCanvasTO(m_GamePannel);
         m_GameManager.GameStarted();
+        StartCoroutine(TutorialPannel());
+    }
+    IEnumerator TutorialPannel()
+    {
+        yield return m_ShowPannelDelay;
+        float val1 = m_TutorialPannel.alpha;
+        DOTween.To(() => val1, x => val1 = x, 1f, 0.5f)
+            .OnUpdate(() =>
+            {
+                m_TutorialPannel.alpha = val1;
+            });
+        yield return m_WaitForSeconds;
+        float val2 = m_TutorialPannel.alpha;
+        DOTween.To(() => val2, x => val2 = x, 0f, 0.25f)
+        .OnUpdate(() =>
+         {
+             m_TutorialPannel.alpha = val2;
+         }).OnComplete(() => {
+             m_TutorialPannel.gameObject.SetActive(false);
+         });
     }
     public void ShowStartPannel()
     {
@@ -53,16 +76,16 @@ public class UIManager : MonoBehaviour
     {
         foreach (var item in m_HealthSprites)
         {
-            item.DOFade(1,0.5f);
+            item.DOFade(1, 0.5f);
         }
     }
     public void OnDamageTaken(int _currentHealth)
     {
         if (_currentHealth < 0) return;
-  
+
         for (int i = _currentHealth; i < m_HealthSprites.Length; i++)
         {
-            m_HealthSprites[i].DOFade(0,0.5f);
+            m_HealthSprites[i].DOFade(0, 0.5f);
         }
     }
     void SwitchCanvasTO(CanvasGroup _Canvas, float _Time = 1)
