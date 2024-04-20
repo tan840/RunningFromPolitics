@@ -148,4 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MoveSpeed: 100
   m_NameTag: CarWhite
-  Wave: {fileID: 0}
+  m_SpeedMuiltiplier: 5

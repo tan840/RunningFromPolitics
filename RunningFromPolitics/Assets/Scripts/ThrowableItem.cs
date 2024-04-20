@@ -8,6 +8,7 @@ public abstract class ThrowableItem : MonoBehaviour, IGrabbable
     //[SerializeField] float m_zDistance;
     [SerializeField] float m_MoveSpeed;
     [SerializeField] string m_NameTag;
+    [SerializeField] float m_SpeedMuiltiplier = 10f;
     bool hasCollided = false;
     Camera m_camera;
     Vector3 m_TouchPosition;
@@ -43,8 +44,10 @@ public abstract class ThrowableItem : MonoBehaviour, IGrabbable
         m_TouchPosition = Input.mousePosition;
         m_TouchPosition.z = _zDistance;
         m_WorldPosition = m_camera.ScreenToWorldPoint(m_TouchPosition);
-        m_MovePosition = Vector3.Lerp(m_RB.position, m_WorldPosition, m_MoveSpeed);
-        m_RB.MovePosition(m_MovePosition);
+        //m_MovePosition = Vector3.Lerp(m_RB.position, m_WorldPosition, m_MoveSpeed);
+        m_MovePosition = (m_WorldPosition - transform.position);
+        //m_RB.MovePosition(m_MovePosition);
+        RB.AddForce(m_MovePosition.x * m_SpeedMuiltiplier, m_MovePosition.y * m_SpeedMuiltiplier, 0f, ForceMode.Acceleration);
         //soundmanager has grab shound played
         Has_Grabbed = true;
        // m_soundManager.Play("MindControl");
