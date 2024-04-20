@@ -25,14 +25,7 @@ public class TouchControl : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = m_Camera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out m_Hit, Mathf.Infinity, m_LayerMask))
-            {
-                m_Grabbable = m_Hit.collider.gameObject.GetComponent<IGrabbable>();
-                m_ZDistance = (m_Hit.transform.position - m_Camera.transform.position).z;
-                m_soundManager.Play("MindControl");
-            }
-            
+            RaycastSingle();
         }
         else if (Input.GetMouseButtonUp(0))
         {
@@ -42,8 +35,45 @@ public class TouchControl : MonoBehaviour
             m_soundManager.Stop("MindControl");
         }
         m_Grabbable?.OnGrab(m_ZDistance);
+        if (Input.GetMouseButton(0))
+        {
+            RaycastConst();
+        }
 
-
+    }
+    void RaycastSingle()
+    {
+        Ray ray = m_Camera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out m_Hit, Mathf.Infinity, m_LayerMask))
+        {
+            if (m_Hit.collider.gameObject.TryGetComponent(out IGrabbable GrabItem))
+            {
+                m_Grabbable = GrabItem;
+                m_ZDistance = (m_Grabbable.GetTransform().position - m_Camera.transform.position).z;
+                m_soundManager.Play("MindControl");
+            }
+            //else if (m_Hit.collider.gameObject.TryGetComponent(out Icollectable Coin))
+            //{
+            //    Coin.Collect();
+            //}
+        }
+    }
+    void RaycastConst()
+    {
+        Ray ray = m_Camera.ScreenPointToRay(Input.mousePosition);
+        if (Physics.Raycast(ray, out m_Hit, Mathf.Infinity, m_LayerMask))
+        {
+            //if (m_Hit.collider.gameObject.TryGetComponent(out IGrabbable GrabItem))
+            //{
+            //    m_Grabbable = GrabItem;
+            //    m_ZDistance = (m_Grabbable.GetTransform().position - m_Camera.transform.position).z;
+            //    m_soundManager.Play("MindControl");
+            //}
+            if (m_Hit.collider.gameObject.TryGetComponent(out Icollectable Coin))
+            {
+                Coin.Collect();
+            }
+        }
     }
     void CheckMouseOverTrash()
     {

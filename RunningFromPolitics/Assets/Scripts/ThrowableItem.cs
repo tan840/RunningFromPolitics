@@ -11,7 +11,7 @@ public abstract class ThrowableItem : MonoBehaviour, IGrabbable
     bool hasCollided = false;
     Camera m_camera;
     Vector3 m_TouchPosition;
-
+    Transform m_Tr;
     Rigidbody m_RB;
     Vector3 m_WorldPosition, m_MovePosition;
 
@@ -26,6 +26,7 @@ public abstract class ThrowableItem : MonoBehaviour, IGrabbable
     private void Start()
     {
         m_soundManager = SoundManager.Instance;
+        m_Tr = transform;
     }
 
     public virtual void Awake()
@@ -57,5 +58,10 @@ public abstract class ThrowableItem : MonoBehaviour, IGrabbable
             health.TakeHit();
             
         }
+    }
+
+    public Transform GetTransform()
+    {
+        return m_Tr;
     }
 }
