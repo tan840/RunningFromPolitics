@@ -6,10 +6,10 @@ using UnityEngine;
 public abstract class ThrowableItem : MonoBehaviour, IGrabbable
 {
     //[SerializeField] float m_zDistance;
-    [SerializeField] float m_MoveSpeed;
+    //[SerializeField] float m_MoveSpeed;
     [SerializeField] string m_NameTag;
-    [SerializeField] float m_SpeedMuiltiplier = 10f;
-    bool hasCollided = false;
+    [SerializeField] float m_SpeedMuiltiplier = 20f;
+    protected bool hasCollided = false;
     Camera m_camera;
     Vector3 m_TouchPosition;
     Transform m_Tr;

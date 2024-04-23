@@ -773,7 +773,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MoveSpeed: 100
   m_NameTag: Cycle
-  m_SpeedMuiltiplier: 5
+  m_SpeedMuiltiplier: 20
 --- !u!1 &6795225168634000297
 GameObject:
   m_ObjectHideFlags: 0

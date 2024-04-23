@@ -10,8 +10,11 @@ public class Coin : MonoBehaviour, Icollectable
     Rigidbody m_RB;
 
 
+    SoundManager m_soundManager;
+
     private void Start()
     {
+        m_soundManager = SoundManager.Instance;
         m_RB = GetComponent<Rigidbody>();
         m_Tr.DOLocalRotate(new Vector3(0, 360, 0), m_RotationDuration, RotateMode.FastBeyond360).SetRelative(true).SetEase(Ease.Linear).SetLoops(-1);
     }
@@ -19,5 +22,6 @@ public class Coin : MonoBehaviour, Icollectable
     {
         //MoveTo UI
         gameObject.SetActive(false);
+        m_soundManager.Play("CoinPickup");
     }
 }

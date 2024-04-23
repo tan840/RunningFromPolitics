@@ -34,4 +34,17 @@ public class PlayerHealth : MonoBehaviour
     {
         health = 3;
     }
+
+    public void killPlayer()
+    {
+        health -= health;
+        m_UIManager.OnDamageTaken(health);
+        if (health < 1)
+        {
+            m_GameManager.GameOver();
+            OnDeath?.Invoke();
+            m_SoundManager.PlayOnce("Deadsfx");
+        }
+    }
+
 }
