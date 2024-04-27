@@ -22,7 +22,7 @@ public abstract class ThrowableItem : MonoBehaviour, IGrabbable
 
     SoundManager m_soundManager;
 
-    bool Has_Grabbed = false;
+    //bool Has_Grabbed = false;
 
     private void Start()
     {
@@ -49,7 +49,7 @@ public abstract class ThrowableItem : MonoBehaviour, IGrabbable
         //m_RB.MovePosition(m_MovePosition);
         RB.AddForce(m_MovePosition.x * m_SpeedMuiltiplier, m_MovePosition.y * m_SpeedMuiltiplier, 0f, ForceMode.Acceleration);
         //soundmanager has grab shound played
-        Has_Grabbed = true;
+        //Has_Grabbed = true;
        // m_soundManager.Play("MindControl");
 
     }

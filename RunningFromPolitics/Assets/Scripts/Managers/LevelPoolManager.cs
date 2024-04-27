@@ -29,8 +29,16 @@ public class LevelPoolManager : MonoBehaviour
     [SerializeField] private List<Platform> m_PlatformList;
     [SerializeField] private List<GameObject> m_Obstacle;
     [SerializeField] float m_PlatformLength = 100;
+
+    [Space(50)]
+    [SerializeField] private List<LevelData> m_LevelPlatforms;
     int m_CurrentPlatformIndex = -1;
     Vector3 m_SpawnPosition = Vector3.zero;
+
+    private void Start()
+    {
+        
+    }
     public void ResetPlatform()
     {
         m_CurrentPlatformIndex = -1;
@@ -49,13 +57,11 @@ public class LevelPoolManager : MonoBehaviour
     {
         if (m_PlatformList != null)
         {
-            //print(m_PlatformList.Count + " platform");
             if (m_CurrentPlatformIndex >= m_PlatformList.Count -1)
             {
                 m_CurrentPlatformIndex = -1;
             }
             m_CurrentPlatformIndex++;
-            //print(m_CurrentPlatformIndex + " m_CurrentPlatformIndex");
             return m_CurrentPlatformIndex;
         }
         return 0;

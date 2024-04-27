@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
+public enum m_GameMode
+{
+    INFINITE = 0,
+    LEVEL_BASED = 1,
+}
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
@@ -25,9 +30,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    [SerializeField] m_GameMode gameMode;
 
-    private bool isGameOver = false;
-    private bool hasGameStarted = false;
 
     //Player Reference
     [SerializeField] GameObject m_Player;
@@ -58,8 +62,8 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        hasGameStarted = false;
-        isGameOver = false;
+        //hasGameStarted = false;
+        //isGameOver = false;
         m_Anim = m_Player.GetComponentInChildren<Animator>();
         m_PlayerMovement = m_Player.GetComponent<PlayerMovement>();
         m_PlayerHealth = m_Player.GetComponent<PlayerHealth>();
@@ -103,7 +107,7 @@ public class GameManager : MonoBehaviour
     }
     public void GameStarted()
     {
-        hasGameStarted = true;
+        //hasGameStarted = true;
         m_Anim.SetBool("StartRunning", true);
         m_LookAtCam.Priority = 9;
         m_PlayerMovement.CanMove = true;
@@ -114,7 +118,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        isGameOver = true;
+        //isGameOver = true;
         m_PlayerMovement.CanMove = false;
         m_Anim.SetBool("StartRunning", false);
         m_Anim.SetTrigger("Death");
