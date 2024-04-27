@@ -34,10 +34,38 @@ public class LevelPoolManager : MonoBehaviour
     [SerializeField] private List<LevelData> m_LevelPlatforms;
     int m_CurrentPlatformIndex = -1;
     Vector3 m_SpawnPosition = Vector3.zero;
+    GameManager m_Gamemanager;
 
     private void Start()
     {
-        
+        m_Gamemanager = GameManager.Instance;
+        switch (m_Gamemanager.GameMode)
+        {
+            case GameMode.INFINITE:
+                break;
+            case GameMode.LEVEL_BASED:
+                SpawnPlatform();
+                break;
+            default:
+                break;
+        }
+    }
+    void SpawnPlatform()
+    {
+        foreach (var item in m_LevelPlatforms)
+        {
+            if (item != null)
+            {
+                //m_SpawnPosition.z += m_PlatformLength;
+                for (int i = 0; i < item.LevelPlatforms.Length; i++)
+                {
+                    print(m_SpawnPosition);
+                    m_SpawnPosition.z += m_PlatformLength;
+                    Platform platform = Instantiate(item.LevelPlatforms[i]);
+                    platform.transform.position = m_SpawnPosition;
+                }
+            }
+        }
     }
     public void ResetPlatform()
     {

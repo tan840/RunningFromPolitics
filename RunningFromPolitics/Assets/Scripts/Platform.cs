@@ -6,11 +6,23 @@ public class Platform : MonoBehaviour
 {
     [SerializeField] Transform[] m_Spawnpoints;
     LevelPoolManager m_levelPoolManager;
+    GameManager m_GameManager;
     List<GameObject> m_Obstacle;
     private void Start()
     {
         m_levelPoolManager = LevelPoolManager.Instance;
-        InstantiateObstacle();
+        m_GameManager = GameManager.Instance;
+        switch (m_GameManager.GameMode)
+        {
+            case GameMode.INFINITE:
+                InstantiateObstacle();
+                break;
+            case GameMode.LEVEL_BASED:
+                break;
+            default:
+                InstantiateObstacle();
+                break;
+        }     
     }
     void InstantiateObstacle()
     {
@@ -38,9 +50,19 @@ public class Platform : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 7)
+        switch (m_GameManager.GameMode)
         {
-            m_levelPoolManager.LoadNextPlatform();
+            case GameMode.INFINITE:
+                if (other.gameObject.layer == 7)
+                {
+                    m_levelPoolManager.LoadNextPlatform();
+                }
+                break;
+            case GameMode.LEVEL_BASED:
+                break;
+            default:
+                InstantiateObstacle();
+                break;
         }
     }
 #if UNITY_EDITOR

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 
-public enum m_GameMode
+public enum GameMode
 {
     INFINITE = 0,
     LEVEL_BASED = 1,
@@ -30,7 +30,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    [SerializeField] m_GameMode gameMode;
+    public GameMode GameMode { get => gameMode; }
+
+    [SerializeField] GameMode gameMode;
 
 
     //Player Reference
