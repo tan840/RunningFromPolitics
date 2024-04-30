@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using RootMotion.Dynamics;
 
 public enum GameMode
 {
@@ -46,6 +47,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera m_LookAtCam;
     [SerializeField] GameObject m_StartSceneBackground;
     [SerializeField] ParticleSystem[] m_Conffetti;
+    PuppetMaster m_PuppetMaster;
     Vector3 m_PlayerStartPosition;
     WaitForSeconds m_WaitForSeconds = new WaitForSeconds(4);
 
@@ -74,6 +76,7 @@ public class GameManager : MonoBehaviour
         m_UIManager = UIManager.Instance;
         m_ScoreManager = ScoreManager.Instance;
         m_LevelManager = LevelPoolManager.Instance;
+        m_PuppetMaster = m_Player.GetComponentInChildren<PuppetMaster>();
     }
     public void IncreasePlayerSpeed()
     {
@@ -120,10 +123,11 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        //isGameOver = true;
         m_PlayerMovement.CanMove = false;
         m_Anim.SetBool("StartRunning", false);
+        m_PlayerMovement.RB.isKinematic = true;
         m_Anim.SetTrigger("Death");
+        m_PuppetMaster.state = PuppetMaster.State.Dead;
         m_PlayerHealth.OnDeath?.Invoke();
     }
 }

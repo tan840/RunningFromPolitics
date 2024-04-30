@@ -1,3 +1,4 @@
+using RootMotion.Dynamics;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,7 @@ public class PlayerHealth : MonoBehaviour
     public UnityEvent OnDeath;
     GameManager m_GameManager;
     UIManager m_UIManager;
-
+    PuppetMaster m_PuppetMaster;
     SoundManager m_SoundManager;
 
     private void Start()
@@ -17,6 +18,7 @@ public class PlayerHealth : MonoBehaviour
         m_SoundManager = SoundManager.Instance;
         m_GameManager = GameManager.Instance;
         m_UIManager = UIManager.Instance;
+        m_PuppetMaster = GetComponentInChildren<PuppetMaster>();
     }
 
     public void TakeHit()
@@ -44,6 +46,8 @@ public class PlayerHealth : MonoBehaviour
             m_GameManager.GameOver();
             OnDeath?.Invoke();
             m_SoundManager.PlayOnce("Deadsfx");
+            print(m_PuppetMaster.muscles[0].name);
+            m_PuppetMaster.muscles[0].rigidbody.AddExplosionForce(500, Vector3.up, 500, 50, ForceMode.Impulse);
         }
     }
 

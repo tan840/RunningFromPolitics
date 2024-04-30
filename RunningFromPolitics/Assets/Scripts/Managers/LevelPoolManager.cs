@@ -59,7 +59,6 @@ public class LevelPoolManager : MonoBehaviour
                 //m_SpawnPosition.z += m_PlatformLength;
                 for (int i = 0; i < item.LevelPlatforms.Length; i++)
                 {
-                    print(m_SpawnPosition);
                     m_SpawnPosition.z += m_PlatformLength;
                     Platform platform = Instantiate(item.LevelPlatforms[i]);
                     platform.transform.position = m_SpawnPosition;

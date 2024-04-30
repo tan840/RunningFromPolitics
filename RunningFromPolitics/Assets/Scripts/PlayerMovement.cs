@@ -10,9 +10,10 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody m_RB;
 
 
-    SoundManager m_SoundManager;
+    //SoundManager m_SoundManager;
     public bool CanMove { get => canMove; set => canMove = value; }
     public float MoveSpeed { get => m_MoveSpeed; set => m_MoveSpeed = value; }
+    public Rigidbody RB { get => m_RB; set => m_RB = value; }
 
     void Start()
     {
