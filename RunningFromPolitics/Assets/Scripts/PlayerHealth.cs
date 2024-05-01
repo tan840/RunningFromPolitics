@@ -46,7 +46,7 @@ public class PlayerHealth : MonoBehaviour
             m_GameManager.GameOver();
             OnDeath?.Invoke();
             m_SoundManager.PlayOnce("Deadsfx");
-            print(m_PuppetMaster.muscles[0].name);
+            //print(m_PuppetMaster.muscles[0].name);
             m_PuppetMaster.muscles[0].rigidbody.AddExplosionForce(400, Vector3.up, 500, 50, ForceMode.Impulse);
         }
     }
