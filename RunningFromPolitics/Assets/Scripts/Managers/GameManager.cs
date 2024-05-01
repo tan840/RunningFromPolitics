@@ -66,8 +66,6 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
-        //hasGameStarted = false;
-        //isGameOver = false;
         m_Anim = m_Player.GetComponentInChildren<Animator>();
         m_PlayerMovement = m_Player.GetComponent<PlayerMovement>();
         m_PlayerHealth = m_Player.GetComponent<PlayerHealth>();
@@ -93,6 +91,10 @@ public class GameManager : MonoBehaviour
             m.Play();
         }
     }
+    public void OnLevelComplete()
+    {
+
+    }
     void OnDeath()
     {
         m_StartSceneBackground.SetActive(true);
@@ -102,6 +104,8 @@ public class GameManager : MonoBehaviour
             yield return m_WaitForSeconds;
             m_Anim.ResetTrigger("Death");
             m_Anim.SetTrigger("Start");
+            m_PlayerMovement.RB.isKinematic = false;
+            m_PuppetMaster.state = PuppetMaster.State.Alive;
             m_Player.transform.position = m_PlayerStartPosition;
             m_UIManager.ShowStartPannel();
             m_LookAtCam.Priority = 11;
@@ -112,7 +116,6 @@ public class GameManager : MonoBehaviour
     }
     public void GameStarted()
     {
-        //hasGameStarted = true;
         m_Anim.SetBool("StartRunning", true);
         m_LookAtCam.Priority = 9;
         m_PlayerMovement.CanMove = true;
