@@ -93,7 +93,14 @@ public class GameManager : MonoBehaviour
     }
     public void OnLevelComplete()
     {
-
+        print("LevelEnd");
+        m_Anim.ResetTrigger("Start");
+        //m_Anim.SetBool("StartRunning", false);
+        m_PlayerMovement.CanMove = false;
+        m_PlayerMovement.RB.isKinematic = true;
+        int Rand = Random.Range(1,3);
+        m_Anim.SetInteger("Victory", Rand);
+        
     }
     void OnDeath()
     {
