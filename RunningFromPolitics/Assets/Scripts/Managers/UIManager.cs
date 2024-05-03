@@ -40,6 +40,8 @@ public class UIManager : MonoBehaviour
     Camera m_Camera;
     WaitForSeconds m_ShowPannelDelay = new WaitForSeconds(2);
     WaitForSeconds m_WaitForSeconds = new WaitForSeconds(4);
+    Vector3 m_UIMoveToPosition = Vector3.zero;
+    float nearClipPlane = 20;
     private void Start()
     {
         m_Camera = Camera.main;
@@ -47,6 +49,12 @@ public class UIManager : MonoBehaviour
         m_CurrentCanvas = m_StartPannel;
         m_GameManager = GameManager.Instance;
         m_StartButton.onClick.AddListener(() => { StartGame(); });
+        
+    }
+    public Vector3 UiPos()
+    {
+        m_UIMoveToPosition = m_Camera.ScreenToWorldPoint(new Vector3(m_CoinTextPos.position.x, m_CoinTextPos.position.y, m_Camera.nearClipPlane + nearClipPlane));
+        return m_UIMoveToPosition;
     }
     void StartGame()
     {

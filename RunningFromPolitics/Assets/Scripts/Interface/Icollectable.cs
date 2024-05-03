@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface Icollectable
 {
-    void Collect();
+    void MoveCoinToCanvas();
 }

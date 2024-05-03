@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
 public class Coin : MonoBehaviour, Icollectable
 {
     [SerializeField] float m_RotationDuration = 2f;
@@ -10,7 +11,9 @@ public class Coin : MonoBehaviour, Icollectable
     UIManager m_UIManager;
     //Rigidbody m_RB;
     [SerializeField] bool m_HasCollected = false;
-
+    [SerializeField] AnimationCurve m_AnimationCurve;
+    [SerializeField] float m_MoveDuration = 0.5f;
+    [SerializeField] float m_xDisplacement = 3;
 
     SoundManager m_soundManager;
     Tween tw;
@@ -21,23 +24,35 @@ public class Coin : MonoBehaviour, Icollectable
         //m_RB = GetComponent<Rigidbody>();
         tw = m_Tr.DOLocalRotate(new Vector3(0, 360, 0), m_RotationDuration, RotateMode.FastBeyond360).SetRelative(true).SetEase(Ease.Linear).SetLoops(-1);
     }
-    public void Collect()
+    public void MoveCoinToCanvas()
     {
-        MoveToCanvas(m_UIManager.CoinTextPos, 20);
-    }
-    RectTransform m_CanvasTarget;
-    public void MoveToCanvas(RectTransform rect, int nearClipPlane)
-    {
-        m_CanvasTarget = rect;
-        Camera cam = Camera.main;
         if (!m_HasCollected)
         {
-            Vector3 targetPos = cam.ScreenToWorldPoint(new Vector3(m_CanvasTarget.position.x, m_CanvasTarget.position.y, cam.nearClipPlane + nearClipPlane));
-            transform.DOMove(targetPos, 0.5f);
-            transform.DOScale(0.5f, 0.4f).OnComplete(() => {
-                gameObject.SetActive(false);
-            }) ;
-            m_soundManager.Play("CoinPickup");
+            Vector3 targetPos = m_UIManager.UiPos();
+            //transform.DOMove(targetPos, m_MoveDuration);
+            //transform.DOScale(0.5f, m_MoveDuration).OnComplete(() =>
+            //{
+            //    gameObject.SetActive(false);
+            //});
+            //m_soundManager.Play("CoinPickup");
+            StartCoroutine(MoveWithXOffset(targetPos));
         }
     }
+    IEnumerator MoveWithXOffset(Vector3 _Target)
+    {
+        float timepassed = 0;
+        Vector3 endPoint = _Target;
+        Vector3 startPos = transform.position;
+        while (timepassed < m_MoveDuration)
+        {
+            timepassed += Time.deltaTime;
+            float linearT = timepassed / m_MoveDuration;
+            float xOffset = m_AnimationCurve.Evaluate(linearT);
+            float xVal = Mathf.Lerp(0, m_xDisplacement, xOffset);
+            transform.position = Vector3.Lerp(startPos, endPoint, linearT) + new Vector3(-xVal,0,0);
+            print(xVal);
+            yield return null;
+        }
+    }
+
 }

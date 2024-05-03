@@ -71,7 +71,7 @@ public class TouchControl : MonoBehaviour
             //}
             if (m_Hit.collider.gameObject.TryGetComponent(out Icollectable Coin))
             {
-                Coin.Collect();
+                Coin.MoveCoinToCanvas();
             }
         }
     }
