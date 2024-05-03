@@ -27,17 +27,22 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public RectTransform CoinTextPos { get => m_CoinTextPos; set => m_CoinTextPos = value; }
+
     [SerializeField] CanvasGroup m_StartPannel;
     [SerializeField] CanvasGroup m_GamePannel;
     [SerializeField] CanvasGroup m_TutorialPannel;
     [SerializeField] Button m_StartButton;
     [SerializeField] Image[] m_HealthSprites;
+    [SerializeField] RectTransform m_CoinTextPos;
     CanvasGroup m_CurrentCanvas;
     GameManager m_GameManager;
+    Camera m_Camera;
     WaitForSeconds m_ShowPannelDelay = new WaitForSeconds(2);
     WaitForSeconds m_WaitForSeconds = new WaitForSeconds(4);
     private void Start()
     {
+        m_Camera = Camera.main;
         m_ScoreManager = ScoreManager.Instance;
         m_CurrentCanvas = m_StartPannel;
         m_GameManager = GameManager.Instance;
@@ -116,5 +121,10 @@ public class UIManager : MonoBehaviour
                     m_CurrentCanvas = _Canvas;
                 });
             });
+    }
+    public Vector3 UICoinWorldPosition()
+    {
+        Vector3 worldPos = m_Camera.ScreenToWorldPoint(m_CoinTextPos.position);
+        return worldPos;
     }
 }
