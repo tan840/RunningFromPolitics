@@ -50,20 +50,20 @@ public class Platform : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        switch (m_GameManager.GameMode)
-        {
-            case GameMode.INFINITE:
-                if (other.gameObject.layer == 7)
-                {
-                    m_levelPoolManager.LoadNextPlatform();
-                }
-                break;
-            case GameMode.LEVEL_BASED:
-                break;
-            default:
-                InstantiateObstacle();
-                break;
-        }
+        //switch (m_GameManager.GameMode)
+        //{
+        //    case GameMode.INFINITE:
+        //        if (other.gameObject.layer == 7)
+        //        {
+        //            m_levelPoolManager.LoadNextPlatform();
+        //        }
+        //        break;
+        //    case GameMode.LEVEL_BASED:
+        //        break;
+        //    default:
+        //        InstantiateObstacle();
+        //        break;
+        //}
     }
 #if UNITY_EDITOR
     private void OnDrawGizmos()

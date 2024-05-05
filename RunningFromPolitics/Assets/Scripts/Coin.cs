@@ -50,7 +50,6 @@ public class Coin : MonoBehaviour, Icollectable
             float xOffset = m_AnimationCurve.Evaluate(linearT);
             float xVal = Mathf.Lerp(0, m_xDisplacement, xOffset);
             transform.position = Vector3.Lerp(startPos, endPoint, linearT) + new Vector3(-xVal,0,0);
-            print(xVal);
             yield return null;
         }
     }
