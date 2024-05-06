@@ -41,8 +41,14 @@ public class Coin : MonoBehaviour, Icollectable
     IEnumerator MoveWithXOffset(Vector3 _Target)
     {
         float timepassed = 0;
+        tw.Kill();
         Vector3 endPoint = _Target;
         Vector3 startPos = transform.position;
+        m_Tr.DOLocalRotate(new Vector3(-90, 0, 0), 0.15f);
+        transform.DOScale(0.5f, 0.5f).SetEase(Ease.InOutSine).OnComplete(() =>
+        { 
+            gameObject.SetActive(false);
+        });
         while (timepassed < m_MoveDuration)
         {
             timepassed += Time.deltaTime;
