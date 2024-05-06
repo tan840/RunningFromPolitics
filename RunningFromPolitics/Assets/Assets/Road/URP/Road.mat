@@ -71,7 +71,7 @@ Material:
     - _Road_Roughness: 0
     m_Colors:
     - _Centre_Color: {r: 1, g: 1, b: 1, a: 0}
-    - _Edge_Color: {r: 1, g: 0.6744842, b: 0, a: 0}
+    - _Edge_Color: {r: 0.8415094, g: 0.7510697, b: 0.5636525, a: 0}
     - _Road_Color: {r: 0.08681371, g: 0.08486288, b: 0.10943389, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &5351176024853079146

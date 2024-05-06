@@ -12,30 +12,30 @@ public class Platform : MonoBehaviour
     {
         m_levelPoolManager = LevelPoolManager.Instance;
         m_GameManager = GameManager.Instance;
-        switch (m_GameManager.GameMode)
-        {
-            case GameMode.INFINITE:
-                InstantiateObstacle();
-                break;
-            case GameMode.LEVEL_BASED:
-                break;
-            default:
-                InstantiateObstacle();
-                break;
-        }     
+        //switch (m_GameManager.GameMode)
+        //{
+        //    case GameMode.INFINITE:
+        //        //InstantiateObstacle();
+        //        break;
+        //    case GameMode.LEVEL_BASED:
+        //        break;
+        //    default:
+        //        //InstantiateObstacle();
+        //        break;
+        //}     
     }
-    void InstantiateObstacle()
-    {
-        m_Obstacle = new List<GameObject>();
-        foreach (var point in m_Spawnpoints) 
-        {
-            int index = Random.Range(0, m_levelPoolManager.Obstacle.Count);
-            GameObject obstacle = Instantiate(m_levelPoolManager.Obstacle[index], 
-                point.position, Quaternion.Euler(point.rotation.x, Random.Range(0, 360),
-                point.rotation.z), point);
-            m_Obstacle.Add(obstacle);
-        }
-    }
+    //void InstantiateObstacle()
+    //{
+    //    m_Obstacle = new List<GameObject>();
+    //    foreach (var point in m_Spawnpoints) 
+    //    {
+    //        int index = Random.Range(0, m_levelPoolManager.Obstacle.Count);
+    //        GameObject obstacle = Instantiate(m_levelPoolManager.Obstacle[index], 
+    //            point.position, Quaternion.Euler(point.rotation.x, Random.Range(0, 360),
+    //            point.rotation.z), point);
+    //        m_Obstacle.Add(obstacle);
+    //    }
+    //}
   
     public void InitializeObstacle()
     {
@@ -48,8 +48,8 @@ public class Platform : MonoBehaviour
             obstacle.transform.localPosition = Vector3.zero;
         }
     }
-    private void OnTriggerEnter(Collider other)
-    {
+   //private void OnTriggerEnter(Collider other)
+    //{
         //switch (m_GameManager.GameMode)
         //{
         //    case GameMode.INFINITE:
@@ -64,7 +64,7 @@ public class Platform : MonoBehaviour
         //        InstantiateObstacle();
         //        break;
         //}
-    }
+    //}
 #if UNITY_EDITOR
     private void OnDrawGizmos()
     {

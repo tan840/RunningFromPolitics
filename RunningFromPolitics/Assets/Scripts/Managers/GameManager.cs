@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using RootMotion.Dynamics;
+using static RootMotion.Demos.CharacterMeleeDemo.Action;
+using DG.Tweening;
 
 public enum GameMode
 {
@@ -95,7 +97,7 @@ public class GameManager : MonoBehaviour
     {
         print("LevelEnd");
         m_Anim.ResetTrigger("Start");
-        //m_Anim.SetBool("StartRunning", false);
+        m_Anim.transform.DORotate(new Vector3(0,-180,0), 0.25f).SetEase(Ease.OutCubic);
         m_PlayerMovement.CanMove = false;
         m_PlayerMovement.RB.isKinematic = true;
         int Rand = Random.Range(1,3);

@@ -24,10 +24,10 @@ public class LevelPoolManager : MonoBehaviour
         }
     }
 
-    public List<GameObject> Obstacle { get => m_Obstacle; }
+    //public List<GameObject> Obstacle { get => m_Obstacle; }
 
-    [SerializeField] private List<Platform> m_PlatformList;
-    [SerializeField] private List<GameObject> m_Obstacle;
+    //[SerializeField] private List<Platform> m_PlatformList;
+    //[SerializeField] private List<GameObject> m_Obstacle;
     [SerializeField] float m_PlatformLength = 100;
 
     [Space(50)]
@@ -77,20 +77,20 @@ public class LevelPoolManager : MonoBehaviour
         int index = GetNextPlatformIndex();
         
         m_SpawnPosition.z += m_PlatformLength;
-        m_PlatformList[index].transform.position = m_SpawnPosition;
-        m_PlatformList[index].InitializeObstacle();
+        //m_PlatformList[index].transform.position = m_SpawnPosition;
+        //m_PlatformList[index].InitializeObstacle();
     }
     int GetNextPlatformIndex()
     {
-        if (m_PlatformList != null)
-        {
-            if (m_CurrentPlatformIndex >= m_PlatformList.Count -1)
-            {
-                m_CurrentPlatformIndex = -1;
-            }
-            m_CurrentPlatformIndex++;
-            return m_CurrentPlatformIndex;
-        }
+        //if (m_PlatformList != null)
+        //{
+        //    if (m_CurrentPlatformIndex >= m_PlatformList.Count -1)
+        //    {
+        //        m_CurrentPlatformIndex = -1;
+        //    }
+        //    m_CurrentPlatformIndex++;
+        //    return m_CurrentPlatformIndex;
+        //}
         return 0;
     }
 }
