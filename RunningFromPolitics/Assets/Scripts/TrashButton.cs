@@ -59,7 +59,6 @@ public class TrashButton : MonoBehaviour
     }
     void QuestComplted()
     {
-        m_GameManager.PLayConfetti();
         m_CurrentEvent.OnCollect.RemoveListener(CollectedItem);
         m_CurrentEvent.OnQuestComplete.RemoveListener(QuestComplted);
         CollectedItemCount = 0;

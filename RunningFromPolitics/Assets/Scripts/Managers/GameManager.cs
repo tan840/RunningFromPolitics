@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
     }
 
     public GameMode GameMode { get => gameMode; }
+    public CinemachineVirtualCamera LevelEndCam { get => m_LevelEndCam; set => m_LevelEndCam = value; }
+    public CinemachineBrain BrainCam { get => m_BrainCam; set => m_BrainCam = value; }
 
     [SerializeField] GameMode gameMode;
 
@@ -46,9 +48,11 @@ public class GameManager : MonoBehaviour
     private PlayerHealth m_PlayerHealth;
     private ScoreManager m_ScoreManager;
     private LevelPoolManager m_LevelManager;
+    [SerializeField] CinemachineBrain m_BrainCam;
     [SerializeField] CinemachineVirtualCamera m_LookAtCam;
+    [SerializeField] CinemachineVirtualCamera m_LevelEndCam;
     [SerializeField] GameObject m_StartSceneBackground;
-    [SerializeField] ParticleSystem[] m_Conffetti;
+
     PuppetMaster m_PuppetMaster;
     Vector3 m_PlayerStartPosition;
     WaitForSeconds m_WaitForSeconds = new WaitForSeconds(4);
@@ -86,23 +90,15 @@ public class GameManager : MonoBehaviour
             m_PlayerMovement.MoveSpeed = 1000;
         }
     }
-    public void PLayConfetti()
-    {
-        foreach (ParticleSystem m in m_Conffetti)
-        {
-            m.Play();
-        }
-    }
+
     public void OnLevelComplete()
     {
-        print("LevelEnd");
         m_Anim.ResetTrigger("Start");
         m_Anim.transform.DORotate(new Vector3(0,-180,0), 0.25f).SetEase(Ease.OutCubic);
         m_PlayerMovement.CanMove = false;
         m_PlayerMovement.RB.isKinematic = true;
         int Rand = Random.Range(1,3);
-        m_Anim.SetInteger("Victory", Rand);
-        
+        m_Anim.SetInteger("Victory", Rand);   
     }
     void OnDeath()
     {
