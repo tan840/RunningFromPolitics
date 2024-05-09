@@ -6,7 +6,7 @@ public class LevelEnd : MonoBehaviour
 {
     bool hasCollided = false;
     GameManager m_GameManager;
-    [SerializeField] ParticleSystem[] m_Conffetti;
+
     private void Start()
     {
         m_GameManager = GameManager.Instance;
