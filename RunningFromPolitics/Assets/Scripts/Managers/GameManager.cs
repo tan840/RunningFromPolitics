@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public GameMode GameMode { get => gameMode; }
     public CinemachineVirtualCamera LevelEndCam { get => m_LevelEndCam; set => m_LevelEndCam = value; }
     public CinemachineBrain BrainCam { get => m_BrainCam; set => m_BrainCam = value; }
+    public int CurrentLevel { get => m_CurrentLevel; set => m_CurrentLevel = value; }
 
     [SerializeField] GameMode gameMode;
 
@@ -52,6 +53,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera m_LookAtCam;
     [SerializeField] CinemachineVirtualCamera m_LevelEndCam;
     [SerializeField] GameObject m_StartSceneBackground;
+    [SerializeField] int m_CurrentLevel = 0;
+    string CURRENT_LEVEL = "CURRENT_LEVEL";
 
     PuppetMaster m_PuppetMaster;
     Vector3 m_PlayerStartPosition;
@@ -67,8 +70,8 @@ public class GameManager : MonoBehaviour
         else
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
         }
+        Application.targetFrameRate = 60;
     }
     private void Start()
     {
@@ -81,6 +84,8 @@ public class GameManager : MonoBehaviour
         m_ScoreManager = ScoreManager.Instance;
         m_LevelManager = LevelPoolManager.Instance;
         m_PuppetMaster = m_Player.GetComponentInChildren<PuppetMaster>();
+        m_BrainCam.m_DefaultBlend = new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.Cut, 0f);
+        m_CurrentLevel = PlayerPrefs.GetInt(CURRENT_LEVEL, 0);
     }
     public void IncreasePlayerSpeed()
     {
@@ -94,11 +99,13 @@ public class GameManager : MonoBehaviour
     public void OnLevelComplete()
     {
         m_Anim.ResetTrigger("Start");
-        m_Anim.transform.DORotate(new Vector3(0,-180,0), 0.25f).SetEase(Ease.OutCubic);
+        m_Anim.transform.DORotate(new Vector3(0, -180, 0), 0.25f).SetEase(Ease.OutCubic);
         m_PlayerMovement.CanMove = false;
         m_PlayerMovement.RB.isKinematic = true;
-        int Rand = Random.Range(1,3);
-        m_Anim.SetInteger("Victory", Rand);   
+        int Rand = Random.Range(1, 3);
+        m_Anim.SetInteger("Victory", Rand);
+        m_CurrentLevel++;
+        PlayerPrefs.SetInt(CURRENT_LEVEL,m_CurrentLevel);
     }
     void OnDeath()
     {
@@ -137,5 +144,6 @@ public class GameManager : MonoBehaviour
         m_Anim.SetTrigger("Death");
         m_PuppetMaster.state = PuppetMaster.State.Dead;
         m_PlayerHealth.OnDeath?.Invoke();
+        PlayerPrefs.SetInt(CURRENT_LEVEL, m_CurrentLevel);
     }
 }

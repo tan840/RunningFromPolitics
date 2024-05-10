@@ -29,12 +29,6 @@ public class Coin : MonoBehaviour, Icollectable
         if (!m_HasCollected)
         {
             Vector3 targetPos = m_UIManager.UiPos();
-            //transform.DOMove(targetPos, m_MoveDuration);
-            //transform.DOScale(0.5f, m_MoveDuration).OnComplete(() =>
-            //{
-            //    gameObject.SetActive(false);
-            //});
-            //m_soundManager.Play("CoinPickup");
             StartCoroutine(MoveWithXOffset(targetPos));
         }
     }
@@ -43,9 +37,9 @@ public class Coin : MonoBehaviour, Icollectable
         float timepassed = 0;
         tw.Kill();
         Vector3 endPoint = _Target;
-        Vector3 startPos = transform.position;
+        Vector3 startPos = m_Tr.position;
         m_Tr.DOLocalRotate(new Vector3(-90, 0, 0), 0.15f);
-        transform.DOScale(0.5f, 0.5f).SetEase(Ease.InOutSine).OnComplete(() =>
+        m_Tr.DOScale(0.5f, 0.5f).SetEase(Ease.InOutSine).OnComplete(() =>
         { 
             gameObject.SetActive(false);
         });
@@ -55,7 +49,7 @@ public class Coin : MonoBehaviour, Icollectable
             float linearT = timepassed / m_MoveDuration;
             float xOffset = m_AnimationCurve.Evaluate(linearT);
             float xVal = Mathf.Lerp(0, m_xDisplacement, xOffset);
-            transform.position = Vector3.Lerp(startPos, endPoint, linearT) + new Vector3(-xVal,0,0);
+            m_Tr.position = Vector3.Lerp(startPos, endPoint, linearT) + new Vector3(-xVal,0,0);
             yield return null;
         }
     }

@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using Unity.VisualScripting;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -113,5 +113,9 @@ public class UIManager : MonoBehaviour
     {
         Vector3 worldPos = m_Camera.ScreenToWorldPoint(m_CoinTextPos.position);
         return worldPos;
+    }
+    public void OnReloadPressed()
+    {
+        SceneManager.LoadScene(0);
     }
 }

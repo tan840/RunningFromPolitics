@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/InfiniteLevel.unity
-    guid: f1592d6ae64d98949b3ac7595a6207ab
+    path: Assets/Scenes/LevelBased.unity
+    guid: e415c9b66d649324083bd77826f47427
   m_configObjects: {}
