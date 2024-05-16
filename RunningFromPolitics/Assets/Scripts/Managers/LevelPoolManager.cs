@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class LevelPoolManager : MonoBehaviour
 {
@@ -36,21 +37,30 @@ public class LevelPoolManager : MonoBehaviour
     private void Start()
     {
         m_Gamemanager = GameManager.Instance;
-        SpawnPlatform();
+        SpawnPlatform(m_Gamemanager.CurrentLevel);
     }
-    void SpawnPlatform()
+    void SpawnPlatform(int _CurrentLevel)
     {
-        foreach (var item in m_LevelPlatforms)
+        print(_CurrentLevel);
+        //foreach (var item in m_LevelPlatforms)
+        //{
+        //    if (item != null)
+        //    {
+        //        for (int i = 0; i < item.LevelPlatforms.Length; i++)
+        //        {
+        //            m_SpawnPosition.z += m_PlatformLength;
+        //            Platform platform = Instantiate(item.LevelPlatforms[i]);
+        //            platform.transform.position = m_SpawnPosition;
+        //        }
+        //    }
+        //}
+        if (m_LevelPlatforms[_CurrentLevel] != null)
         {
-            if (item != null)
+            for (int j = 0; j < m_LevelPlatforms[_CurrentLevel].LevelPlatforms.Length; j++)
             {
-                //m_SpawnPosition.z += m_PlatformLength;
-                for (int i = 0; i < item.LevelPlatforms.Length; i++)
-                {
-                    m_SpawnPosition.z += m_PlatformLength;
-                    Platform platform = Instantiate(item.LevelPlatforms[i]);
-                    platform.transform.position = m_SpawnPosition;
-                }
+                m_SpawnPosition.z += m_PlatformLength;
+                Platform platform = Instantiate(m_LevelPlatforms[_CurrentLevel].LevelPlatforms[j]);
+                platform.transform.position = m_SpawnPosition;
             }
         }
     }

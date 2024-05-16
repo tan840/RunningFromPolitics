@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float m_MoveSpeed;
     bool canMove = false;
     Rigidbody m_RB;
+    Transform m_Tr;
 
 
     //SoundManager m_SoundManager;
@@ -18,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         m_RB = GetComponent<Rigidbody>();
+        m_Tr = transform;
     }
 
 
@@ -25,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (canMove)
         {   
-            m_RB.velocity = (m_MoveSpeed * Time.fixedDeltaTime * transform.forward);
+            m_RB.velocity = (m_MoveSpeed * Time.fixedDeltaTime * m_Tr.forward);
         }
     }
 }

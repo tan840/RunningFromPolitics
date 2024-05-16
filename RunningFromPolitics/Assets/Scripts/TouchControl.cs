@@ -29,7 +29,7 @@ public class TouchControl : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
-            CheckMouseOverButton(m_Grabbable);
+            //CheckMouseOverButton(m_Grabbable);
             m_Grabbable = null;
             m_ZDistance = 0;
             m_soundManager.Stop("MindControl");
@@ -75,48 +75,48 @@ public class TouchControl : MonoBehaviour
             }
         }
     }
-    void CheckMouseOverTrash()
-    {
+    //void CheckMouseOverTrash()
+    //{
 
-        TrashButton m_TrashBtn = null;
-        if (m_EventSystem.IsPointerOverGameObject())
-        {
-            PointerEventData pointerdata = new PointerEventData(m_EventSystem);
-            pointerdata.position = Input.mousePosition;
-            List<RaycastResult> Rayresults = new List<RaycastResult>();
-            m_EventSystem.RaycastAll(pointerdata, Rayresults);
+    //    TrashButton m_TrashBtn = null;
+    //    if (m_EventSystem.IsPointerOverGameObject())
+    //    {
+    //        PointerEventData pointerdata = new PointerEventData(m_EventSystem);
+    //        pointerdata.position = Input.mousePosition;
+    //        List<RaycastResult> Rayresults = new List<RaycastResult>();
+    //        m_EventSystem.RaycastAll(pointerdata, Rayresults);
 
-            for (int i = 0; i < Rayresults.Count; i++)
-            {
-                if (Rayresults[i].gameObject.TryGetComponent(out TrashButton trashButton))
-                {
-                    m_TrashBtn = trashButton;
-                    m_TrashBtn.ScaleIcon();
-                }
-            }
-        }
-        else
-        {
-            m_TrashBtn?.ScaleIconReset();
-            print(m_TrashBtn);
-        }
-    }
-    void CheckMouseOverButton(IGrabbable _Item)
-    {
-        if (m_EventSystem.IsPointerOverGameObject())
-        {
-            PointerEventData pointerdata = new PointerEventData(m_EventSystem);
-            pointerdata.position = Input.mousePosition;
-            List<RaycastResult> Rayresults = new List<RaycastResult>();
-            m_EventSystem.RaycastAll(pointerdata, Rayresults);
+    //        for (int i = 0; i < Rayresults.Count; i++)
+    //        {
+    //            if (Rayresults[i].gameObject.TryGetComponent(out TrashButton trashButton))
+    //            {
+    //                m_TrashBtn = trashButton;
+    //                m_TrashBtn.ScaleIcon();
+    //            }
+    //        }
+    //    }
+    //    else
+    //    {
+    //        m_TrashBtn?.ScaleIconReset();
+    //        print(m_TrashBtn);
+    //    }
+    //}
+    //void CheckMouseOverButton(IGrabbable _Item)
+    //{
+    //    if (m_EventSystem.IsPointerOverGameObject())
+    //    {
+    //        PointerEventData pointerdata = new PointerEventData(m_EventSystem);
+    //        pointerdata.position = Input.mousePosition;
+    //        List<RaycastResult> Rayresults = new List<RaycastResult>();
+    //        m_EventSystem.RaycastAll(pointerdata, Rayresults);
 
-            for (int i = 0; i < Rayresults.Count; i++)
-            {
-                if (Rayresults[i].gameObject.TryGetComponent(out TrashButton trashButton))
-                {
-                    trashButton.Collect(_Item);
-                }
-            }
-        }
-    }
+    //        for (int i = 0; i < Rayresults.Count; i++)
+    //        {
+    //            if (Rayresults[i].gameObject.TryGetComponent(out TrashButton trashButton))
+    //            {
+    //                trashButton.Collect(_Item);
+    //            }
+    //        }
+    //    }
+    //}
 }

@@ -11,6 +11,7 @@ public enum GameMode
     INFINITE = 0,
     LEVEL_BASED = 1,
 }
+[DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
 {
     private static GameManager instance;
@@ -73,6 +74,7 @@ public class GameManager : MonoBehaviour
         }
         Application.targetFrameRate = 60;
     }
+
     private void Start()
     {
         m_Anim = m_Player.GetComponentInChildren<Animator>();
