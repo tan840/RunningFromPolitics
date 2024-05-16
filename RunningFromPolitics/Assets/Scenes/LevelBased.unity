@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.23048866, g: 0.5995361, b: 0.98743033, a: 1}
+  m_IndirectSpecularColor: {r: 0.23048869, g: 0.5995361, b: 0.98743033, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1419,7 +1419,7 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 50
+  far clip plane: 64.8
   field of view: 40
   orthographic: 0
   orthographic size: 5
@@ -1516,8 +1516,8 @@ MonoBehaviour:
   m_UpdateMethod: 2
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
-    m_Style: 0
-    m_Time: 0
+    m_Style: 1
+    m_Time: 1.75
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -5149,7 +5149,7 @@ MonoBehaviour:
     FieldOfView: 40
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 50
+    FarClipPlane: 90
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
@@ -5307,7 +5307,7 @@ MonoBehaviour:
     FieldOfView: 60.000004
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 1000
+    FarClipPlane: 180
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
@@ -7213,7 +7213,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1402888872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8744,7 +8744,7 @@ MonoBehaviour:
     FieldOfView: 40
     OrthographicSize: 5
     NearClipPlane: 0.3
-    FarClipPlane: 50
+    FarClipPlane: 64.8
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
