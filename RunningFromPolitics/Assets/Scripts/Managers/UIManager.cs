@@ -31,14 +31,16 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] CanvasGroup m_StartPannel;
     [SerializeField] CanvasGroup m_GamePannel;
+    [SerializeField] CanvasGroup m_LevelCompletePannel;
+    [SerializeField] CanvasGroup m_LevelFailedPannel;
     [SerializeField] Button m_StartButton;
+    [SerializeField] Button m_LevelFailedButton;
+    [SerializeField] Button m_LevelSuccessButton;
     [SerializeField] Image[] m_HealthSprites;
     [SerializeField] RectTransform m_CoinTextPos;
     CanvasGroup m_CurrentCanvas;
     GameManager m_GameManager;
     Camera m_Camera;
-    //WaitForSeconds m_ShowPannelDelay = new WaitForSeconds(2);
-    //WaitForSeconds m_WaitForSeconds = new WaitForSeconds(4);
     Vector3 m_UIMoveToPosition = Vector3.zero;
     float nearClipPlane = 20;
     private void Start()
@@ -47,8 +49,7 @@ public class UIManager : MonoBehaviour
         m_ScoreManager = ScoreManager.Instance;
         m_CurrentCanvas = m_StartPannel;
         m_GameManager = GameManager.Instance;
-        m_StartButton.onClick.AddListener(() => { StartGame(); });
-        
+        m_StartButton.onClick.AddListener(() => { StartGame(); });    
     }
     public Vector3 UiPos()
     {
@@ -63,6 +64,14 @@ public class UIManager : MonoBehaviour
     public void ShowStartPannel()
     {
         SwitchCanvasTO(m_StartPannel);
+    }
+    public void ShowLevelFailed(float _Delay = 0)
+    {
+        SwitchCanvasTO(m_LevelFailedPannel, _Delay);
+    }
+    public void ShowLevelSuccess(float _Delay = 0)
+    {
+        SwitchCanvasTO(m_LevelCompletePannel, _Delay);
     }
     public void ResetHealthIcon()
     {

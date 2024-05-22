@@ -108,6 +108,7 @@ public class GameManager : MonoBehaviour
         m_Anim.SetInteger("Victory", Rand);
         m_CurrentLevel++;
         PlayerPrefs.SetInt(CURRENT_LEVEL,m_CurrentLevel);
+        m_UIManager.ShowLevelSuccess(4);
     }
     void OnDeath()
     {
@@ -121,7 +122,7 @@ public class GameManager : MonoBehaviour
             m_PlayerMovement.RB.isKinematic = false;
             m_PuppetMaster.state = PuppetMaster.State.Alive;
             m_Player.transform.position = m_PlayerStartPosition;
-            m_UIManager.ShowStartPannel();
+            m_UIManager.ShowLevelFailed(2);
             m_LookAtCam.Priority = 11;
             m_PlayerHealth.ResetHealth();
             m_ScoreManager.SetMaxScore();
