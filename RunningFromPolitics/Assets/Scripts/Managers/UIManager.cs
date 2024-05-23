@@ -69,6 +69,8 @@ public class UIManager : MonoBehaviour
     }
     void OnLevelCompletePannelButton()
     {
+        m_GameManager.ResetPlayer();
+        m_GameManager.ResetStartPosition();
         SwitchCanvasTO(m_StartPannel);
     }
     public void ShowLevelFailed()

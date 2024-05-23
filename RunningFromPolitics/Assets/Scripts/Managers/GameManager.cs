@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
 
     PuppetMaster m_PuppetMaster;
     Vector3 m_PlayerStartPosition;
-    WaitForSeconds m_WaitForSeconds = new WaitForSeconds(4);
+    WaitForSeconds m_WaitForSeconds = new WaitForSeconds(1.5f);
 
     UIManager m_UIManager;
     private void Awake()
@@ -113,21 +113,42 @@ public class GameManager : MonoBehaviour
     void OnDeath()
     {
         m_StartSceneBackground.SetActive(true);
+        m_UIManager.ShowLevelFailed();
+        StartCoroutine(DeathSequence());
+        IEnumerator DeathSequence()
+        {
+            yield return m_WaitForSeconds;
+            m_Anim.ResetTrigger("Death");
+            m_Anim.SetTrigger("Start");
+            ResetPlayer();
+        }
+    }
+    public void ResetStartPosition()
+    {
+        m_Anim.SetInteger("Victory", 0);
+        m_Anim.SetBool("StartRunning", false);
+        m_Anim.SetTrigger("Start");
+        m_LevelEndCam.Priority = 9;
+        m_Anim.transform.DORotate(new Vector3(0, 0, 0), 0.15f).SetEase(Ease.OutCubic);
+        m_StartSceneBackground.SetActive(true);
+        m_PuppetMaster.mode = PuppetMaster.Mode.Active;
+    }
+    public void ResetPlayer()
+    {
         StartCoroutine(DeathSequence());
         IEnumerator DeathSequence()
         {
             yield return null;
-            m_Anim.ResetTrigger("Death");
-            m_Anim.SetTrigger("Start");
-            m_PlayerMovement.RB.isKinematic = false;
-            m_PuppetMaster.state = PuppetMaster.State.Alive;
             m_Player.transform.position = m_PlayerStartPosition;
-            
+            m_PlayerMovement.RB.isKinematic = false;
+            m_PuppetMaster.mode = PuppetMaster.Mode.Kinematic;
+            m_PuppetMaster.state = PuppetMaster.State.Alive;
+            m_BrainCam.m_DefaultBlend = new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.Cut, 0f);
             m_LookAtCam.Priority = 11;
             m_PlayerHealth.ResetHealth();
             m_ScoreManager.SetMaxScore();
-            //m_LevelManager.ResetPlatform();
         }
+
     }
     public void GameStarted()
     {
@@ -147,7 +168,7 @@ public class GameManager : MonoBehaviour
         m_Anim.SetTrigger("Death");
         m_PuppetMaster.state = PuppetMaster.State.Dead;
         m_PlayerHealth.OnDeath?.Invoke();
-        m_UIManager.ShowLevelFailed();
+        
         PlayerPrefs.SetInt(CURRENT_LEVEL, m_CurrentLevel);
     }
 }
