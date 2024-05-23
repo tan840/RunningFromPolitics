@@ -49,7 +49,9 @@ public class UIManager : MonoBehaviour
         m_ScoreManager = ScoreManager.Instance;
         m_CurrentCanvas = m_StartPannel;
         m_GameManager = GameManager.Instance;
-        m_StartButton.onClick.AddListener(() => { StartGame(); });    
+        m_StartButton.onClick.AddListener(() => { StartGame(); });
+        m_LevelFailedButton.onClick.AddListener(() => { OnLevelFailedPannelButton(); });
+        m_LevelSuccessButton.onClick.AddListener(() => { OnLevelCompletePannelButton(); });    
     }
     public Vector3 UiPos()
     {
@@ -61,17 +63,21 @@ public class UIManager : MonoBehaviour
         SwitchCanvasTO(m_GamePannel);
         m_GameManager.GameStarted();
     }
-    public void ShowStartPannel()
+    void OnLevelFailedPannelButton()
     {
         SwitchCanvasTO(m_StartPannel);
     }
-    public void ShowLevelFailed(float _Delay = 0)
+    void OnLevelCompletePannelButton()
     {
-        SwitchCanvasTO(m_LevelFailedPannel, _Delay);
+        SwitchCanvasTO(m_StartPannel);
     }
-    public void ShowLevelSuccess(float _Delay = 0)
+    public void ShowLevelFailed()
     {
-        SwitchCanvasTO(m_LevelCompletePannel, _Delay);
+        SwitchCanvasTO(m_LevelFailedPannel);
+    }
+    public void ShowLevelSuccess()
+    {
+        SwitchCanvasTO(m_LevelCompletePannel);
     }
     public void ResetHealthIcon()
     {

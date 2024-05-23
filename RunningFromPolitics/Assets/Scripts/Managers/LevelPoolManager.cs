@@ -40,6 +40,11 @@ public class LevelPoolManager : MonoBehaviour
     }
     void SpawnPlatform(int _CurrentLevel)
     {
+        if (_CurrentLevel >= m_LevelPlatforms.Count)
+        {
+            m_Gamemanager.CurrentLevel = 0;
+            _CurrentLevel = 0;
+        }
         if (m_LevelPlatforms[_CurrentLevel] != null)
         {
             for (int j = 0; j < m_LevelPlatforms[_CurrentLevel].LevelPlatforms.Length; j++)
@@ -50,9 +55,9 @@ public class LevelPoolManager : MonoBehaviour
             }
         }
     }
-    public void ResetPlatform()
-    {
-        m_SpawnPosition = Vector3.zero;
-        m_PlatformLength = 100;
-    }
+    //public void ResetPlatform()
+    //{
+    //    m_SpawnPosition = Vector3.zero;
+    //    m_PlatformLength = 100;
+    //}
 }

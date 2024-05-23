@@ -630,7 +630,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 219122491}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!1 &229976981
 GameObject:
   m_ObjectHideFlags: 0
@@ -1047,8 +1047,8 @@ Transform:
   m_Children:
   - {fileID: 1971595909}
   - {fileID: 1752890745}
-  - {fileID: 100363665}
   - {fileID: 254204292}
+  - {fileID: 100363665}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &293547448
@@ -1068,8 +1068,8 @@ MonoBehaviour:
   m_LevelCompletePannel: {fileID: 100363666}
   m_LevelFailedPannel: {fileID: 254204288}
   m_StartButton: {fileID: 1095556463}
-  m_LevelFailedButton: {fileID: 0}
-  m_LevelSuccessButton: {fileID: 0}
+  m_LevelFailedButton: {fileID: 2020233873}
+  m_LevelSuccessButton: {fileID: 1199448258}
   m_HealthSprites:
   - {fileID: 1269864815}
   - {fileID: 1959900067}
@@ -1327,8 +1327,8 @@ MonoBehaviour:
   m_UpdateMethod: 2
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
-    m_Style: 1
-    m_Time: 1.75
+    m_Style: 0
+    m_Time: 0
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -1562,7 +1562,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 403549703}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1848,7 +1848,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 460059203}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!1 &474845888
 GameObject:
   m_ObjectHideFlags: 0
@@ -1928,7 +1928,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 474845888}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!1 &582954352
 GameObject:
   m_ObjectHideFlags: 0
@@ -2008,7 +2008,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 582954352}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!1001 &629001528
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3113,7 +3113,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 985642102}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!1 &992268492
 GameObject:
   m_ObjectHideFlags: 0
@@ -3494,7 +3494,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1059476779}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!1 &1063279935
 GameObject:
   m_ObjectHideFlags: 0
@@ -3724,7 +3724,7 @@ GameObject:
   - component: {fileID: 1095556464}
   - component: {fileID: 1095556463}
   m_Layer: 0
-  m_Name: Button
+  m_Name: Button_StartGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4171,7 +4171,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1174822601}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!1 &1199448256
 GameObject:
   m_ObjectHideFlags: 0
@@ -4185,7 +4185,7 @@ GameObject:
   - component: {fileID: 1199448259}
   - component: {fileID: 1199448258}
   m_Layer: 0
-  m_Name: Button
+  m_Name: Button_LevelComplete
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4956,7 +4956,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1320659655}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!1 &1323551562
 GameObject:
   m_ObjectHideFlags: 0
@@ -5257,7 +5257,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1328489596}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!1 &1347401228
 GameObject:
   m_ObjectHideFlags: 0
@@ -5552,7 +5552,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1613612714}
-  m_CullTransparentMesh: 1
+  m_CullTransparentMesh: 0
 --- !u!1 &1630907989
 GameObject:
   m_ObjectHideFlags: 0
@@ -6888,7 +6888,7 @@ GameObject:
   - component: {fileID: 2020233874}
   - component: {fileID: 2020233873}
   m_Layer: 0
-  m_Name: Button
+  m_Name: Button_LevelFailed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
