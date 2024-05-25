@@ -84,7 +84,7 @@ public class TrashButton : MonoBehaviour
         }
         else
         {
-            m_ScoreManager.Penalty(10);
+            //m_ScoreManager.Penalty(10);
             m_SoundManager.PlayOnce("Explosion");
 
         }

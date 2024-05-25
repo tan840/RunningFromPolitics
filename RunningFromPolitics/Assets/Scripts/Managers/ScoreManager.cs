@@ -47,15 +47,15 @@ public class ScoreManager : MonoBehaviour
     }
     void ScoreTextUpdate(int _Score)
     {
-        m_ScoreText.text = "Score: " + _Score.ToString();
+        m_ScoreText.text = _Score.ToString();
     }
-    public void Penalty(int _Penalty)
-    {
-        if (m_CurrentScore <= 0) return;
-        m_CurrentScore -= _Penalty;
-        if (m_CurrentScore <= 0) m_CurrentScore = 0;
-        ScoreTextUpdate(m_CurrentScore);
-    }
+    //public void Penalty(int _Penalty)
+    //{
+    //    if (m_CurrentScore <= 0) return;
+    //    m_CurrentScore -= _Penalty;
+    //    if (m_CurrentScore <= 0) m_CurrentScore = 0;
+    //    ScoreTextUpdate(m_CurrentScore);
+    //}
     public void SetMaxScore()
     {
         if (m_CurrentScore > MaxScore)

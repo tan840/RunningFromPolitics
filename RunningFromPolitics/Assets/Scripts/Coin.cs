@@ -9,18 +9,22 @@ public class Coin : MonoBehaviour, Icollectable
     [SerializeField] Transform m_Tr;
     [SerializeField] int m_CoinValue;
     UIManager m_UIManager;
+    ScoreManager m_ScoreManager;
     //Rigidbody m_RB;
     [SerializeField] bool m_HasCollected = false;
     [SerializeField] AnimationCurve m_AnimationCurve;
     [SerializeField] float m_MoveDuration = 0.5f;
     [SerializeField] float m_xDisplacement = 3;
-
-    SoundManager m_soundManager;
+    
+    /// <summary>
+    /// SoundManager m_soundManager;
+    /// </summary>
     public Tween tw;
     private void Start()
     {
         m_UIManager = UIManager.Instance;
-        m_soundManager = SoundManager.Instance;
+        m_ScoreManager = ScoreManager.Instance;
+        //m_soundManager = SoundManager.Instance;
         //m_RB = GetComponent<Rigidbody>();
         tw = m_Tr.DOLocalRotate(new Vector3(0, 360, 0), m_RotationDuration, RotateMode.FastBeyond360).SetRelative(true).SetEase(Ease.Linear).SetLoops(-1);
     }
@@ -28,6 +32,7 @@ public class Coin : MonoBehaviour, Icollectable
     {
         if (!m_HasCollected)
         {
+            m_HasCollected = true;
             Vector3 targetPos = m_UIManager.UiPos();
             StartCoroutine(MoveWithXOffset(targetPos));
         }
@@ -46,6 +51,8 @@ public class Coin : MonoBehaviour, Icollectable
         m_Tr.DOScale(0.5f, 0.5f).SetEase(Ease.InOutSine).OnComplete(() =>
         { 
             gameObject.SetActive(false);
+            print("CoinAdded");
+            m_ScoreManager.IncrimentScore(1);
         });
         while (timepassed < m_MoveDuration)
         {

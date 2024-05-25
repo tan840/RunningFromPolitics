@@ -39,11 +39,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] Button m_LevelSuccessButton;
     [SerializeField] Image[] m_HealthSprites;
     [SerializeField] RectTransform m_CoinTextPos;
+    [SerializeField] float nearClipPlane = 20;
     CanvasGroup m_CurrentCanvas;
     GameManager m_GameManager;
     Camera m_Camera;
     Vector3 m_UIMoveToPosition = Vector3.zero;
-    float nearClipPlane = 20;
     private void Start()
     {
         m_Camera = Camera.main;
