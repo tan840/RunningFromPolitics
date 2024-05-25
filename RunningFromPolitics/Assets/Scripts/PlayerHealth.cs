@@ -44,7 +44,7 @@ public class PlayerHealth : MonoBehaviour
         if (health < 1)
         {
             m_GameManager.GameOver();
-            OnDeath?.Invoke();
+            //OnDeath?.Invoke();
             m_SoundManager.PlayOnce("Deadsfx");
             //print(m_PuppetMaster.muscles[0].name);
             m_PuppetMaster.muscles[0].rigidbody.AddExplosionForce(600, Vector3.up, 500, 100, ForceMode.Impulse);

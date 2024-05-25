@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class UIManager : MonoBehaviour
 {
@@ -51,7 +52,7 @@ public class UIManager : MonoBehaviour
         m_GameManager = GameManager.Instance;
         m_StartButton.onClick.AddListener(() => { StartGame(); });
         m_LevelFailedButton.onClick.AddListener(() => { OnLevelFailedPannelButton(); });
-        m_LevelSuccessButton.onClick.AddListener(() => { OnLevelCompletePannelButton(); });    
+        m_LevelSuccessButton.onClick.AddListener(() => { OnLevelCompletePannelButton(); });
     }
     public Vector3 UiPos()
     {
@@ -67,19 +68,18 @@ public class UIManager : MonoBehaviour
     {
         SwitchCanvasTO(m_StartPannel);
     }
-    void OnLevelCompletePannelButton()
+    void OnLevelCompletePannelButton(Action OnComplete = null)
     {
-        m_GameManager.ResetPlayer();
-        m_GameManager.ResetStartPosition();
         SwitchCanvasTO(m_StartPannel);
+
     }
-    public void ShowLevelFailed()
+    public void ShowLevelFailed(Action OnComplete = null)
     {
-        SwitchCanvasTO(m_LevelFailedPannel);
+        SwitchCanvasTO(m_LevelFailedPannel, 1, OnComplete);
     }
-    public void ShowLevelSuccess()
+    public void ShowLevelSuccess(Action OnComplete = null)
     {
-        SwitchCanvasTO(m_LevelCompletePannel);
+        SwitchCanvasTO(m_LevelCompletePannel, 1, OnComplete);
     }
     public void ResetHealthIcon()
     {
@@ -97,7 +97,7 @@ public class UIManager : MonoBehaviour
             m_HealthSprites[i].DOFade(0, 0.5f);
         }
     }
-    void SwitchCanvasTO(CanvasGroup _Canvas, float _Time = 1)
+    void SwitchCanvasTO(CanvasGroup _Canvas, float _Time = 1, Action OnComplete = null)
     {
         float val1 = m_CurrentCanvas.alpha;
         m_CurrentCanvas.interactable = false;
@@ -111,7 +111,7 @@ public class UIManager : MonoBehaviour
             {
                 m_CurrentCanvas.gameObject.SetActive(false);
                 _Canvas.gameObject.SetActive(true);
-                float val2 = _Canvas.alpha;
+                float val2 = _Canvas.alpha;         
                 DOTween.To(() => val2, x => val2 = x, 1f, _Time)
                 .OnUpdate(() =>
                 {
@@ -123,6 +123,7 @@ public class UIManager : MonoBehaviour
                     _Canvas.interactable = true;
                     _Canvas.blocksRaycasts = true;
                     m_CurrentCanvas = _Canvas;
+                    OnComplete?.Invoke();
                 });
             });
     }

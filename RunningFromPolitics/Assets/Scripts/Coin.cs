@@ -16,7 +16,7 @@ public class Coin : MonoBehaviour, Icollectable
     [SerializeField] float m_xDisplacement = 3;
 
     SoundManager m_soundManager;
-    Tween tw;
+    public Tween tw;
     private void Start()
     {
         m_UIManager = UIManager.Instance;
@@ -31,6 +31,10 @@ public class Coin : MonoBehaviour, Icollectable
             Vector3 targetPos = m_UIManager.UiPos();
             StartCoroutine(MoveWithXOffset(targetPos));
         }
+    }
+    public void KillTween()
+    {
+        transform.DOKill(false);
     }
     IEnumerator MoveWithXOffset(Vector3 _Target)
     {
