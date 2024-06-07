@@ -3765,7 +3765,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3261891729521235158}
   m_LocalRotation: {x: 0.5880189, y: 0.1575594, z: -0.20533513, w: 0.76632005}
-  m_LocalPosition: {x: 0, y: 0, z: 55}
+  m_LocalPosition: {x: 0, y: 0, z: 57.7}
   m_LocalScale: {x: 0.19244593, y: 0.19244593, z: 0.19244593}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3773,7 +3773,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 75, y: 0, z: -30}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 16.9, y: 43.5}
+  m_AnchoredPosition: {x: 14.5, y: 43.5}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8591365424665231360
@@ -8285,6 +8285,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 084890210568f5b4a88f34fd5bfc316f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_CoinList: []
+  m_Material: {fileID: 0}
 --- !u!65 &4291344841411273259
 BoxCollider:
   m_ObjectHideFlags: 0

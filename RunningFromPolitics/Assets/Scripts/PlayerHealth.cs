@@ -23,13 +23,14 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeHit()
     {
+        m_SoundManager.PlayOnce("Hurt");
         health--;
         m_UIManager.OnDamageTaken(health);
         if (health < 1 )
         {
             m_GameManager.GameOver();
             OnDeath?.Invoke();
-            m_SoundManager.PlayOnce("Deadsfx");
+            
         }
     }
     public void ResetHealth()

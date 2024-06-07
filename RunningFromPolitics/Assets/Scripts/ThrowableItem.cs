@@ -5,8 +5,6 @@ using UnityEngine;
 
 public abstract class ThrowableItem : MonoBehaviour, IGrabbable
 {
-    //[SerializeField] float m_zDistance;
-    //[SerializeField] float m_MoveSpeed;
     [SerializeField] string m_NameTag;
     [SerializeField] float m_SpeedMuiltiplier = 20f;
     protected bool hasCollided = false;
@@ -15,6 +13,7 @@ public abstract class ThrowableItem : MonoBehaviour, IGrabbable
     Transform m_Tr;
     Rigidbody m_RB;
     Vector3 m_WorldPosition, m_MovePosition;
+    [SerializeField] ParticleSystem m_ParticleSystem;
 
     public Rigidbody RB { get => m_RB; set => m_RB = value; }
 
@@ -22,36 +21,42 @@ public abstract class ThrowableItem : MonoBehaviour, IGrabbable
 
     SoundManager m_soundManager;
 
-    //bool Has_Grabbed = false;
 
     private void Start()
     {
         m_soundManager = SoundManager.Instance;
         m_Tr = transform;
+        m_ParticleSystem?.Stop();
     }
 
     public virtual void Awake()
     {
 
-        m_camera = Camera.main;      
+        m_camera = Camera.main;
         m_RB = GetComponent<Rigidbody>();
     }
 
-    
+
 
     public virtual void OnGrab(float _zDistance)
     {
         m_TouchPosition = Input.mousePosition;
         m_TouchPosition.z = _zDistance;
         m_WorldPosition = m_camera.ScreenToWorldPoint(m_TouchPosition);
-        //m_MovePosition = Vector3.Lerp(m_RB.position, m_WorldPosition, m_MoveSpeed);
         m_MovePosition = (m_WorldPosition - transform.position);
         //m_RB.MovePosition(m_MovePosition);
         RB.AddForce(m_MovePosition.x * m_SpeedMuiltiplier, m_MovePosition.y * m_SpeedMuiltiplier, 0f, ForceMode.Acceleration);
         //soundmanager has grab shound played
         //Has_Grabbed = true;
-       // m_soundManager.Play("MindControl");
+        // m_soundManager.Play("MindControl");
+        if (m_ParticleSystem != null && !m_ParticleSystem.isPlaying) { m_ParticleSystem?.Play();}
+        
 
+    }
+
+    public virtual void OnGrabRelease()
+    {
+        m_ParticleSystem?.Stop();
     }
     public virtual void OnCollisionEnter(Collision collision)
     {
@@ -59,7 +64,7 @@ public abstract class ThrowableItem : MonoBehaviour, IGrabbable
         {
             hasCollided = true;
             health.TakeHit();
-            
+
         }
     }
 
@@ -67,4 +72,5 @@ public abstract class ThrowableItem : MonoBehaviour, IGrabbable
     {
         return m_Tr;
     }
+
 }

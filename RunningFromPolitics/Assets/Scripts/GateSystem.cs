@@ -11,11 +11,14 @@ public class GateSystem : MonoBehaviour
     [SerializeField] float m_MoveTime;
     [SerializeField] Ease m_Ease;
     [SerializeField] ParticleSystem[] m_Conffetti;
+    [SerializeField] ParticleSystem m_Moni;
     GameManager m_GameManager;
     bool hasCollided = false;
     private void Start()
     {
+        m_Moni.Stop();
         m_GameManager = GameManager.Instance;
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -35,5 +38,6 @@ public class GateSystem : MonoBehaviour
         {
             m.Play();
         }
+        m_Moni.Play();  
     }
 }

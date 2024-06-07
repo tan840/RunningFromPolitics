@@ -16,4 +16,9 @@ public class CarWhite : ThrowableItem
     {
         base.OnCollisionEnter(collision);
     }
+    public override void OnGrabRelease()
+    {
+        base.OnGrabRelease();
+
+    }
 }

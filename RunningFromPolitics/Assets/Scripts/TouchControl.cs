@@ -26,6 +26,7 @@ public class TouchControl : MonoBehaviour
         }
         else if (Input.GetMouseButtonUp(0))
         {
+            m_Grabbable?.OnGrabRelease();
             m_Grabbable = null;
             m_ZDistance = 0;
             m_soundManager.Stop("MindControl");

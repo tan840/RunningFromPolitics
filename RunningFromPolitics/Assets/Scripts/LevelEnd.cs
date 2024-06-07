@@ -15,6 +15,7 @@ public class LevelEnd : MonoBehaviour
     {
         if (!hasCollided && other.gameObject.layer == 7)
         {
+            //print("Collided with player");
             hasCollided = true;
             m_GameManager.OnLevelComplete();
         }
