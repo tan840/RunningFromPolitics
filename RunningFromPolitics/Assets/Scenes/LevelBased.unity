@@ -7176,8 +7176,12 @@ MonoBehaviour:
     LevelPlatforms:
     - {fileID: 974766571379229392, guid: 1be00b79b39b8f64fa180c8c68af5731, type: 3}
     - {fileID: 974766571379229392, guid: f771ec00b1577944c9e66e84dcc38462, type: 3}
-    - {fileID: 974766571379229392, guid: a1804e7fde181394c90184975df74886, type: 3}
     - {fileID: 2892765594037926966, guid: dd846ee3ec576154484b13d3489f8820, type: 3}
+  - Name: Level
+    LevelPlatforms:
+    - {fileID: 974766571379229392, guid: 696d6f0de80cb434aada9abe52503480, type: 3}
+    - {fileID: 974766571379229392, guid: 5bffdda752e9ba3489c261ab64171321, type: 3}
+    - {fileID: 5174358413502768635, guid: 8622777edce485b4caab8eaaa0de6b75, type: 3}
   m_SpawnedPlatforms: []
 --- !u!4 &1711492630
 Transform:
